@@ -20,6 +20,7 @@ import {
   SiTailwindcss,
   SiTypescript,
   SiVuedotjs,
+  SiCss,
 } from 'react-icons/si';
 
 interface Skill {
@@ -37,7 +38,7 @@ interface SkillsProps {
 const defaultSkills: Skill[] = [
   // Frontend Web Technologies
   { name: 'HTML', icon: <SiHtml5 />, url: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
-  // { name: 'CSS', icon: <SiCss3 />, url: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
+  { name: 'CSS', icon: <SiCss />, url: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
   { name: 'JavaScript', icon: <SiJavascript />, url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
   { name: 'TypeScript', icon: <SiTypescript />, url: 'https://www.typescriptlang.org/' },
   { name: 'React', icon: <SiReact />, url: 'https://reactjs.org/' },
