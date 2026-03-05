@@ -31,7 +31,7 @@ export const defaultProjects: Project[] = [
 
   //TuneWithMe Web App
   {
-    title: 'TuneWithMe',
+    title: 'TuneWithMeTEST',
     description:
       'A tuner web application that allows users to tune their instruments and keep a library of their favorite tunings and instruments.',
     longDescription:
