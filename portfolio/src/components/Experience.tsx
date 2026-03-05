@@ -55,7 +55,6 @@ const workExperience: ExperienceItem[] = [
     period: 'Now',
     description: 'Software Development Internship',
     responsibilities: ['Making a custom module for the Odoo platform'],
-
     skills: ['Python', 'Odoo'],
     logo: '/images/home/experience/endoo.webp',
     website: 'https://www.endoo.com',
@@ -98,7 +97,7 @@ const Experience = () => {
           </TabsTrigger>
         </TabsList>
 
-        <div className="relative min-h-[200px]">
+        <div className="relative min-h-50">
           {' '}
           {/* Set min-height to avoid jump on switch */}
           <AnimatePresence mode="wait">
