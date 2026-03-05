@@ -29,7 +29,7 @@ export const defaultProjects: Project[] = [
     date: new Date('2025-11-01'),
   },
 
-  //TuneWithMe Web App
+  /*  //TuneWithMe Web App
   {
     title: 'TuneWithMeTEST',
     description:
@@ -65,7 +65,7 @@ export const defaultProjects: Project[] = [
     link: 'https://tunewithme.onrender.com/home',
     sourceCodeLink: 'https://github.com/brentvervaet/TuneWithMe.git',
     date: new Date('2024-12-10'),
-  },
+  },*/
 
   // iOS App - RealDealMeal
   {
