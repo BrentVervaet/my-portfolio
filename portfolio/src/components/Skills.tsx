@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import { FaJava } from 'react-icons/fa';
 import {
+  SiCss,
   SiGit,
   SiHtml5,
   SiJavascript,
@@ -20,7 +21,6 @@ import {
   SiTailwindcss,
   SiTypescript,
   SiVuedotjs,
-  SiCss,
 } from 'react-icons/si';
 
 interface Skill {

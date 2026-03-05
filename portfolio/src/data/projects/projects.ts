@@ -29,7 +29,7 @@ export const defaultProjects: Project[] = [
     date: new Date('2025-11-01'),
   },
 
-  /*  //TuneWithMe Web App
+  //TuneWithMe Web App
   {
     title: 'TuneWithMeTEST',
     description:
@@ -52,7 +52,7 @@ export const defaultProjects: Project[] = [
       'Designing and styling the frontend (first full-stack app) -> Used Tailwind and explored UI libraries for React; iterated based on testing.',
       'Implementing user authentication and admin roles -> Applied sessions or token-based auth to secure the app.',
     ],
-    technologies: ['React', 'JavaScript', 'Node.js', 'Vite', 'Tailwind CSS', 'REST', 'MySQL'],
+    technologies: ['React', 'JavaScript', 'Vite', 'REST', 'MySQL'],
     images: [
       '/images/Projects/TuneWithMe/TuneWithMe01.webp',
       '/images/Projects/TuneWithMe/TuneWithMe02.webp',
@@ -62,10 +62,9 @@ export const defaultProjects: Project[] = [
       '/images/Projects/TuneWithMe/TuneWithMe06.webp',
       '/images/Projects/TuneWithMe/TuneWithMe07.webp',
     ],
-    link: 'https://tunewithme.onrender.com/home',
     sourceCodeLink: 'https://github.com/brentvervaet/TuneWithMe.git',
     date: new Date('2024-12-10'),
-  },*/
+  },
 
   // iOS App - RealDealMeal
   {
@@ -104,40 +103,6 @@ export const defaultProjects: Project[] = [
     ],
     sourceCodeLink: 'https://github.com/brentvervaet/RealDealMeal.git',
     date: new Date('2025-08-28'),
-  },
-
-  // Portfolio Website
-  {
-    title: 'Portfolio Website',
-    description:
-      'This very website! A responsive portfolio showcasing my projects and skills, built with modern web technologies.',
-    longDescription:
-      'This is my personal portfolio website, designed to present who I am as a developer. It provides an overview of my skills, experience, and projects, with direct links to my GitHub, LinkedIn, and contact options. The site serves both as a creative outlet and a professional showcase for recruiters and tech enthusiasts.',
-    features: [
-      'Sleek, scrollable homepage with smooth transitions and clean layout',
-      'Dedicated About and Projects pages for more in-depth content',
-      'Built-in dark mode support for visual comfort',
-      'Subtle Framer Motion animations throughout for a dynamic user experience',
-      'Fully responsive layout and optimized for both mobile and desktop',
-    ],
-    challenges: [
-      'Implementing animations without sacrificing performance → Used Framer Motion with lazy loading and optimized transitions.',
-      'Integrating theme switching (dark/light mode) → Handled with built-in support from next-themes.',
-      'First time using TypeScript and Next.js → Solved with AI assistance, intelligent code suggestions (IntelliSense), and prior experience with Node.js.',
-    ],
-    technologies: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS'],
-    images: [
-      '/images/Projects/Portfolio/portfolio01.webp',
-      '/images/Projects/Portfolio/portfolio02.webp',
-      '/images/Projects/Portfolio/portfolio03.webp',
-      '/images/Projects/Portfolio/portfolio04.webp',
-      '/images/Projects/Portfolio/portfolio05.webp',
-      '/images/Projects/Portfolio/portfolio06.webp',
-      '/images/Projects/Portfolio/portfolio07.webp',
-    ],
-    link: 'https://brentvervaet.dev',
-    sourceCodeLink: 'https://github.com/brentvervaet/my-portfolio.git',
-    date: new Date('2025-06-25'),
   },
 
   //IT-conference App
