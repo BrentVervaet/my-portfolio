@@ -12,6 +12,17 @@ export interface Project {
 }
 
 export const defaultProjects: Project[] = [
+  // Manual.to for Odoo
+  {
+    title: 'Endoo intership project',
+    longDescription: 'Coming soon',
+    description: 'Manual.to for Odoo',
+    features: ['Coming soon'],
+    challenges: ['Coming soon'],
+    technologies: ['Odoo', 'Python'],
+    images: [],
+    date: new Date('2026-05-22'),
+  },
   // Fashion Portfolio: Annelies Annys
   {
     title: 'Annelies Annys Portfolio',
