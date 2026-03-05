@@ -51,14 +51,14 @@ const workExperience: ExperienceItem[] = [
   {
     id: 1,
     title: 'Software Development Intern',
-    organization: 'Endare',
-    period: '2025 - 2026',
+    organization: 'Endoo',
+    period: 'Now',
     description: 'Software Development Internship',
-    responsibilities: ['Internship starting February 2025'],
+    responsibilities: ['Making a custom module for the Odoo platform'],
 
-    skills: ['HTML', 'CSS', 'JavaScript', 'React', 'TypeScript', 'Node.js', 'Laravel', 'Python', 'SQL', 'REST'],
-    logo: '/images/home/experience/endare.webp',
-    website: 'https://www.endare.com',
+    skills: ['Python', 'Odoo'],
+    logo: '/images/home/experience/endoo.webp',
+    website: 'https://www.endoo.com',
   },
 ];
 
