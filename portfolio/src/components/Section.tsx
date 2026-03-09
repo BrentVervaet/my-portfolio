@@ -15,12 +15,11 @@ interface SectionProps {
  * - compact: slightly reduced for subordinate sections
  */
 export const Section: React.FC<SectionProps> = ({ id, children, className, size = 'default', noMaxWidth = false }) => {
-  // New tighter vertical rhythm (base 8 -> scaled) per user request
-  // default: py-8 md:py-12, compact: py-6 md:py-8
-  const vertical = size === 'compact' ? 'py-6 md:py-8' : 'py-8 md:py-12';
+  // Enhanced vertical rhythm for better visual hierarchy
+  const vertical = size === 'compact' ? 'py-12 md:py-16' : 'py-16 md:py-24';
   return (
-    <section id={id} className={cn('px-4 md:px-6', vertical, className)}>
-      <div className={cn('mx-auto w-full', !noMaxWidth && 'max-w-4xl')}>{children}</div>
+    <section id={id} className={cn('w-full', vertical, className)}>
+      <div className={cn('mx-auto w-full', !noMaxWidth && 'max-w-5xl')}>{children}</div>
     </section>
   );
 };

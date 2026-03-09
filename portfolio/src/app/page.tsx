@@ -22,7 +22,7 @@ const Projects = dynamic(() => import('@/components/projects/Projects'), {
 export default function Home() {
   const [wave, setWave] = useState(false);
   return (
-    <main className="mx-auto max-w-3xl">
+    <main className="mx-auto max-w-6xl px-4 py-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

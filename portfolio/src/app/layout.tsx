@@ -118,7 +118,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
 
       <body
-        className={`flex min-h-screen flex-col bg-teal-100 font-sans text-zinc-900 antialiased dark:bg-teal-900 dark:text-white`}
+        className={`flex min-h-screen flex-col bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-sans text-zinc-900 antialiased dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 dark:text-white`}
       >
         <AnimatedBackground />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

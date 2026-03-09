@@ -3,8 +3,8 @@
 export default function AnimatedBackground() {
   return (
     <div
-      className="animate-gradient fixed inset-0 -z-10 bg-linear-to-br from-blue-300 via-cyan-300 to-green-300 opacity-60 dark:from-blue-800 dark:via-cyan-800 dark:to-green-800"
-      style={{ backgroundSize: '200% 200%' }}
+      className="animate-gradient fixed inset-0 -z-10 bg-gradient-to-br from-blue-400/20 via-purple-400/20 to-pink-400/20 opacity-80 dark:from-blue-600/30 dark:via-purple-600/30 dark:to-pink-600/30"
+      style={{ backgroundSize: '400% 400%' }}
     ></div>
   );
 }

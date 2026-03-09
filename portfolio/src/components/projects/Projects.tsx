@@ -28,13 +28,13 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
 
   return (
     <Section id="projects">
-      <div className="mb-6 flex items-center justify-between">
-        <SectionHeading id="projects-section">Projects</SectionHeading>
+      <div className="mb-8 flex items-center justify-between">
+        <SectionHeading id="projects-section">Featured Projects</SectionHeading>
         <Button
           variant="ghost"
           size="sm"
           onClick={toggleSortOrder}
-          className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-4 text-xs shadow-md backdrop-blur-md transition-all hover:scale-105 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none active:scale-95 dark:border-white/10 dark:bg-black/20"
+          className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm shadow-lg backdrop-blur-md transition-all hover:scale-105 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none active:scale-95 dark:border-white/10 dark:bg-black/20"
           title={sortOrder === 'newest' ? 'Sort by oldest first' : 'Sort by latest first'}
           aria-label={`Currently sorting by ${sortOrder} projects. Click to sort by ${sortOrder === 'newest' ? 'oldest' : 'newest'} projects`}
         >
@@ -43,8 +43,8 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
               Latest
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -62,8 +62,8 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
               Oldest
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -79,44 +79,50 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
           )}
         </Button>
       </div>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2" role="region" aria-labelledby="projects-section">
+      <div
+        className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+        role="region"
+        aria-labelledby="projects-section"
+      >
         {sortedProjects.map(project => (
           <div
             key={project.title}
-            className="group glass flex flex-col overflow-hidden rounded-2xl p-0 transition-all will-change-transform hover:scale-[1.02] hover:shadow-lg"
+            className="group glass-subtle hover:shadow-3xl flex flex-col overflow-hidden rounded-3xl border border-white/20 p-0 shadow-2xl transition-all will-change-transform hover:scale-[1.02] dark:border-white/10"
           >
             {/*Images*/}
-            <div className="surface-divider py-1">
+            <div className="surface-divider py-2">
               <ProjectImageCarousel images={project.images} projectTitle={project.title} />
             </div>
 
             {/*Content*/}
-            <div className="p-5">
+            <div className="p-6">
               <div className="flex items-start justify-between">
                 <Link
                   href={`/projects/${project.title.toLowerCase().replaceAll(/\s+/g, '-')}`}
-                  className="group-hover:text-primary rounded focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent focus:outline-none"
+                  className="group-hover:text-primary rounded-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent focus:outline-none"
                   aria-label={`View details for ${project.title} project`}
                 >
-                  <h3 className="font-mono text-lg font-semibold transition">{project.title}</h3>
+                  <h3 className="font-mono text-xl font-bold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                    {project.title}
+                  </h3>
                 </Link>
-                <span className="text-xs text-zinc-500">
+                <span className="text-sm text-zinc-500 dark:text-zinc-400">
                   {project.date.toLocaleDateString('en-UK', {
                     year: 'numeric',
                     month: 'short',
                   })}
                 </span>
               </div>
-              <p className="mt-2 text-sm text-zinc-400 dark:text-zinc-300">{project.description}</p>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">{project.description}</p>
             </div>
 
             {/*Tags*/}
-            <div className="grow px-5 pb-5">
-              <div className="flex flex-wrap gap-1">
+            <div className="grow px-6 pb-4">
+              <div className="flex flex-wrap gap-2">
                 {project.technologies.map(tech => (
                   <Badge
                     key={tech}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-0.5 text-xs font-normal text-zinc-800 shadow-sm backdrop-blur-sm transition-colors dark:border-white/10 dark:bg-black/5 dark:text-zinc-300"
+                    className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-zinc-700 shadow-sm backdrop-blur-sm transition-all hover:bg-white/20 dark:border-white/10 dark:bg-black/10 dark:text-zinc-300 dark:hover:bg-black/20"
                   >
                     {tech}
                   </Badge>
@@ -125,12 +131,12 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
             </div>
 
             {/*Links*/}
-            <div className="surface-divider flex flex-wrap gap-3 p-4 pt-4">
+            <div className="surface-divider flex flex-wrap gap-4 p-6 pt-4">
               {project.link && (
                 <Button
                   asChild
                   variant="outline"
-                  className="rounded-full border border-white/20 bg-white/5 px-6 shadow-md backdrop-blur-xl transition-all hover:scale-105 hover:bg-white/10 active:scale-95 dark:border-white/10 dark:bg-black/10 dark:hover:bg-black/20"
+                  className="rounded-full border border-white/20 bg-white/10 px-6 py-2 shadow-lg backdrop-blur-xl transition-all hover:scale-105 hover:bg-white/20 active:scale-95 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30"
                 >
                   <a href={project.link} target="_blank" rel="noopener noreferrer">
                     <svg
@@ -143,7 +149,7 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="mr-1"
+                      className="mr-2"
                     >
                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                       <polyline points="15 3 21 3 21 9" />
@@ -158,7 +164,7 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
                 <Button
                   asChild
                   variant="outline"
-                  className="rounded-full border border-white/20 bg-white/5 px-6 shadow-md backdrop-blur-xl transition-all hover:scale-105 hover:bg-white/10 active:scale-95 dark:border-white/10 dark:bg-black/10 dark:hover:bg-black/20"
+                  className="rounded-full border border-white/20 bg-white/10 px-6 py-2 shadow-lg backdrop-blur-xl transition-all hover:scale-105 hover:bg-white/20 active:scale-95 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30"
                 >
                   <a href={project.sourceCodeLink} target="_blank" rel="noopener noreferrer">
                     <svg
@@ -171,7 +177,7 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="mr-1"
+                      className="mr-2"
                     >
                       <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
                       <path d="M9 18c-4.51 2-5-2-7-2" />
