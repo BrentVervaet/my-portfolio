@@ -55,7 +55,7 @@ export default function SocialLinks({ className = '', showResumeButton = false }
   ];
 
   return (
-    <div className={`flex items-center space-x-3 text-zinc-800 dark:text-zinc-200 ${className}`}>
+    <div className={`flex items-center space-x-3 text-zinc-800 ${className}`}>
       {socialLinks.map(link => (
         <motion.a
           key={link.ariaLabel}

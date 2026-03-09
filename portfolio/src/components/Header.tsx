@@ -1,6 +1,5 @@
 'use client';
 import SocialLinks from '@/components/SocialsLinks';
-import ThemeToggle from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { motion } from 'framer-motion';
@@ -43,13 +42,8 @@ export default function Header() {
           </SheetTrigger>
         )}
 
-        <SheetContent
-          side="right"
-          className="border-l border-white/20 bg-white/10 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-black/20"
-        >
-          <div className="absolute right-4 bottom-4">
-            <ThemeToggle />
-          </div>
+        <SheetContent side="right" className="border-l border-white/20 bg-white/10 shadow-lg backdrop-blur-md">
+          <div className="absolute right-4 bottom-4">{/* <ThemeToggle /> */}</div>
 
           <SheetTitle />
 
@@ -75,7 +69,7 @@ export default function Header() {
       <div className="hidden items-center space-x-6 font-mono text-sm md:flex">
         <motion.div initial={{ opacity: 0, x: 300 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-            <Link href="/#projects" className="text-zinc-600 dark:text-zinc-400">
+            <Link href="/#projects" className="text-zinc-600">
               Projects
             </Link>
           </motion.div>
@@ -83,12 +77,12 @@ export default function Header() {
 
         <motion.div initial={{ opacity: 0, x: 210 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-            <Link href="/about" className="text-zinc-600 dark:text-zinc-400">
+            <Link href="/about" className="text-zinc-600">
               About
             </Link>
           </motion.div>
         </motion.div>
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
       </div>
     </nav>
   );

@@ -31,10 +31,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
           transition={{ duration: 0.6 }}
           className="mb-6 flex items-center"
         >
-          <Link
-            href="/#projects"
-            className="mr-4 flex items-center text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200"
-          >
+          <Link href="/#projects" className="mr-4 flex items-center text-sm text-zinc-500 hover:text-zinc-900">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -53,7 +50,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
           </Link>
         </motion.div>
 
-        <div className="overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-black/20">
+        <div className="overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-lg backdrop-blur-xl">
           {/* Project Images */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -81,7 +78,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                   })}
                 </span>
               </div>
-              <p className="text-zinc-700 dark:text-zinc-300">{project.description}</p>
+              <p className="text-zinc-700">{project.description}</p>
             </motion.div>
 
             {/* Long Description */}
@@ -90,10 +87,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm dark:bg-black/10"
+                className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
               >
                 <h2 className="mb-2 font-mono text-lg font-semibold">About This Project</h2>
-                <p className="text-sm text-zinc-700 dark:text-zinc-300">{project.longDescription}</p>
+                <p className="text-sm text-zinc-700">{project.longDescription}</p>
               </motion.div>
             )}
 
@@ -104,10 +101,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ amount: 0.2 }}
                 transition={{ duration: 0.6 }}
-                className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm dark:bg-black/10"
+                className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
               >
                 <h2 className="mb-2 font-mono text-lg font-semibold">Key Features</h2>
-                <ul className="ml-5 list-disc space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
+                <ul className="ml-5 list-disc space-y-1 text-sm text-zinc-700">
                   {project.features.map((feature, index) => (
                     <li key={index}>{feature}</li>
                   ))}
@@ -122,10 +119,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ amount: 0.2 }}
                 transition={{ duration: 0.6 }}
-                className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm dark:bg-black/10"
+                className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
               >
                 <h2 className="mb-2 font-mono text-lg font-semibold">Challenges & Solutions</h2>
-                <ul className="ml-5 list-disc space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
+                <ul className="ml-5 list-disc space-y-1 text-sm text-zinc-700">
                   {project.challenges.map((challenge, index) => (
                     <li key={index}>{challenge}</li>
                   ))}
@@ -140,7 +137,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ amount: 0.2 }}
                 transition={{ duration: 0.6 }}
-                className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm dark:bg-black/10"
+                className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
               >
                 <h2 className="mb-2 font-mono text-lg font-semibold">Technologies Used</h2>
                 <div className="flex flex-wrap gap-1">
@@ -148,7 +145,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                     <Badge
                       key={index}
                       variant="outline"
-                      className="rounded-full bg-white/10 px-3 py-0.5 text-xs backdrop-blur-sm dark:bg-black/20"
+                      className="rounded-full bg-white/10 px-3 py-0.5 text-xs backdrop-blur-sm"
                     >
                       {tech}
                     </Badge>
@@ -169,7 +166,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                   <Button
                     asChild
                     variant="outline"
-                    className="rounded-full border border-white/20 bg-white/5 px-6 shadow-md backdrop-blur-xl transition-all hover:bg-white/10 dark:border-white/10 dark:bg-black/10 dark:hover:bg-black/20"
+                    className="rounded-full border border-white/20 bg-white/5 px-6 shadow-md backdrop-blur-xl transition-all hover:bg-white/10"
                   >
                     <a href={project.link} target="_blank" rel="noopener noreferrer">
                       <svg
@@ -199,7 +196,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                   <Button
                     asChild
                     variant="outline"
-                    className="rounded-full border border-white/20 bg-white/5 px-6 shadow-md backdrop-blur-xl transition-all hover:bg-white/10 dark:border-white/10 dark:bg-black/10 dark:hover:bg-black/20"
+                    className="rounded-full border border-white/20 bg-white/5 px-6 shadow-md backdrop-blur-xl transition-all hover:bg-white/10"
                   >
                     <a href={project.sourceCodeLink} target="_blank" rel="noopener noreferrer">
                       <svg

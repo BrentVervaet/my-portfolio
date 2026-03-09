@@ -3,7 +3,6 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import PageTransition from '@/components/PageTransition';
 import type { Metadata, Viewport } from 'next';
-import { ThemeProvider } from 'next-themes';
 import { Fira_Code, Roboto } from 'next/font/google';
 import React from 'react';
 import './globals.css';
@@ -117,17 +116,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <title></title>
       </head>
 
-      <body
-        className={`flex min-h-screen flex-col bg-teal-100 font-sans text-zinc-900 antialiased dark:bg-teal-900 dark:text-white`}
-      >
+      <body className={`flex min-h-screen flex-col bg-teal-100 font-sans text-zinc-900 antialiased`}>
         <AnimatedBackground />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="mx-auto max-w-7xl grow px-4 sm:px-6 lg:px-8">
-            <Header />
-            <PageTransition>{children}</PageTransition>
-          </div>
-          <Footer />
-        </ThemeProvider>
+        <div className="mx-auto max-w-7xl grow px-4 sm:px-6 lg:px-8">
+          <Header />
+          <PageTransition>{children}</PageTransition>
+        </div>
+        <Footer />
       </body>
     </html>
   );
