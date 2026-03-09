@@ -50,7 +50,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
           </Link>
         </motion.div>
 
-        <div className="overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-lg backdrop-blur-xl">
+        <div className="overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-black/20">
           {/* Project Images */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -78,7 +78,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                   })}
                 </span>
               </div>
-              <p className="text-zinc-700">{project.description}</p>
+              <p className="text-zinc-700 dark:text-zinc-300">{project.description}</p>
             </motion.div>
 
             {/* Long Description */}

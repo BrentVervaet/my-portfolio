@@ -25,7 +25,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ wave, setWave }) => (
           rel="noopener noreferrer"
           aria-label="Visit Brent Vervaet's Instagram profile"
         >
-          <Avatar className="h-24 w-24 border-2 border-white/30 shadow-inner">
+          <Avatar className="h-24 w-24 border-2 border-white/30 shadow-inner dark:border-white/20">
             <AvatarImage src="/images/home/brent-vervaet.webp" alt="Brent Vervaet - Full-stack developer portrait" />
             <AvatarFallback className="bg-gradient-to-br from-blue-400/30 to-purple-400/30 backdrop-blur-xl">
               BV
@@ -48,16 +48,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ wave, setWave }) => (
             👋
           </motion.span>
         </SectionHeading>
-        <p className="mb-4 max-w-xl text-center text-base md:text-left">
+        <p className="mb-4 max-w-xl text-center text-base md:text-left dark:text-zinc-400">
           A full-stack developer focused on creating beautiful and functional web and mobile experiences.
         </p>
-        <div className="mb-4 flex items-center gap-2 text-zinc-600">
+        <div className="mb-4 flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
           <Link
             href="https://www.google.com/maps/place/Gent"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open Ghent location in Google Maps"
-            className="flex items-center gap-2 text-zinc-600"
+            className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
