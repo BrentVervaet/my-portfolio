@@ -8,7 +8,6 @@ import {
   SiGit,
   SiHtml5,
   SiJavascript,
-  SiJira,
   SiMongodb,
   SiMysql,
   SiNeo4J,
@@ -18,7 +17,6 @@ import {
   SiReact,
   SiSpring,
   SiSwift,
-  SiTailwindcss,
   SiTypescript,
   SiVuedotjs,
 } from 'react-icons/si';
@@ -44,7 +42,6 @@ const defaultSkills: Skill[] = [
   { name: 'React', icon: <SiReact />, url: 'https://reactjs.org/' },
   { name: 'Next.js', icon: <SiNextdotjs />, url: 'https://nextjs.org/' },
   { name: 'Vue', icon: <SiVuedotjs />, url: 'https://vuejs.org/' },
-  { name: 'Tailwind CSS', icon: <SiTailwindcss />, url: 'https://tailwindcss.com/' },
 
   // Backend/Server Technologies
   { name: 'Node.js', icon: <SiNodedotjs />, url: 'https://nodejs.org/' },
@@ -62,7 +59,6 @@ const defaultSkills: Skill[] = [
 
   // Development Tools
   { name: 'Git', icon: <SiGit />, url: 'https://git-scm.com/' },
-  { name: 'Jira', icon: <SiJira />, url: 'https://www.atlassian.com/software/jira' },
 ];
 
 const Skills: React.FC<SkillsProps> = ({ skills = defaultSkills }) => {
