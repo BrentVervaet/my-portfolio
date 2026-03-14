@@ -56,7 +56,7 @@ const workExperience: ExperienceItem[] = [
     id: 1,
     title: 'Software Development Intern',
     organization: 'Endoo',
-    period: '2024 - Present',
+    period: '2026 - Present',
     description:
       'Developing custom modules for the Odoo platform, working with Python backend development and business process automation.',
     responsibilities: [
