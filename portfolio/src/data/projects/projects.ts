@@ -23,13 +23,25 @@ export const defaultProjects: Project[] = [
     images: [],
     date: new Date('2026-05-22'),
   },
+
   // Fashion Portfolio: Annelies Annys
   {
     title: 'Annelies Annys Portfolio',
-    description: 'A fashion portfolio website for fashion student Annelies Annys.',
-    longDescription: 'Coming soon - A sleek portfolio to showcase fashion designs and creative projects.',
-    features: ['Coming soon'],
-    challenges: ['Coming soon'],
+    description:
+      'A multidisciplinary digital showcase for Annelies Annys, highlighting her work in fashion design, textile art, and visual identity.',
+    longDescription:
+      'A custom-built portfolio designed to bridge the gap between tactile textile art and digital presentation. The site serves as a central hub for Annelies’ diverse creative output—ranging from "Lost before morning" fashion concepts to graphic design for cultural landmarks like Coudenberg Palace.',
+    features: [
+      'Dynamic gallery for textile and fashion collections',
+      'Integrated project case studies for graphic design and visual identity',
+      'Responsive design optimized for creative industry scouts',
+      'Custom filtering for different creative domains (Fashion vs. Graphic Design)',
+    ],
+    challenges: [
+      'Implementing a high-performance image grid that handles large, high-resolution fashion photography without compromising page load speeds.',
+      'Designing a minimalist UI that remains visually interesting while ensuring it doesn’t compete with the bold textures and colors of the artwork.',
+      'Developing a flexible layout system in Vue to accommodate varying aspect ratios of fashion sketches, editorial photos, and graphic design assets.',
+    ],
     technologies: ['Vue', 'TypeScript', 'Tailwind CSS'],
     images: [
       '/images/Projects/AnneliesPortfolio/portfolio01.webp',
