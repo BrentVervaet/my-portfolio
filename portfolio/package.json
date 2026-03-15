@@ -31,7 +31,7 @@
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
-    "@eslint/css": "^0.14.1",
+    "@eslint/css": "^1.0.0",
     "@eslint/js": "^10.0.1",
     "@next/bundle-analyzer": "^16.1.6",
     "@next/eslint-plugin-next": "^16.1.6",
