@@ -21,7 +21,7 @@ export const defaultProjects: Project[] = [
     challenges: ['Coming soon'],
     technologies: ['Odoo', 'Python'],
     images: [],
-    date: new Date('2026-05-22'),
+    date: new Date('2026-02-22'),
   },
 
   // Fashion Portfolio: Annelies Annys
