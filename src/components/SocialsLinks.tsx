@@ -77,7 +77,7 @@ export default function SocialLinks({ className = '', showResumeButton = false }
           asChild
         >
           <motion.a
-            whileTap={{ rotate: -2, scale: 0.5 }}
+            whileTap={{ rotate: -2, scale: 0.95 }}
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.1 }}
             href="/CV_Brent_Vervaet.pdf"

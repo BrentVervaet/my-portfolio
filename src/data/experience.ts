@@ -45,15 +45,12 @@ export const workExperience: ExperienceItem[] = [
     title: 'Software Development Intern',
     organization: 'Endoo',
     period: '2026 - Present',
-    description:
-      'Developing custom modules for the Odoo platform, working with Python backend development and business process automation.',
+    description: 'Developing a custom module for the Odoo platform.',
     responsibilities: [
       'Building custom Odoo modules for business process automation',
-      'Implementing Python-based backend solutions',
-      'Collaborating with cross-functional teams on software development projects',
       'Learning enterprise software development best practices',
     ],
-    skills: ['Python', 'Odoo', 'PostgreSQL', 'Git'],
+    skills: ['Python', 'Odoo'],
     location: 'Ghent, Belgium',
     logo: '/images/home/experience/endoo.webp',
     website: 'https://www.endoo.com',

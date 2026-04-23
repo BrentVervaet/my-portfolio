@@ -1,19 +1,25 @@
-import { AnimatedSection } from '@/components/AnimatedSection';
-import { fadeInLeft, fadeInRight, viewportTransition } from '@/lib/animations';
+import { Section, SectionHeading } from '@/components/Section';
+import type { Metadata } from 'next';
 import { AboutContent } from './page-content';
+
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'Learn more about Brent Vervaet - full-stack developer with a passion for modern web technologies.',
+};
 
 export default function AboutPage() {
   return (
-    <main className="relative mx-auto max-w-3xl p-10">
-      <div className="container mx-auto">
-        <div className="mx-auto w-full max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-black/20">
-            <AnimatedSection {...fadeInRight} {...viewportTransition}>
-              <AboutContent />
-            </AnimatedSection>
-          </div>
+    <main className="mx-auto max-w-4xl px-4 py-8">
+      <Section>
+        <SectionHeading>About Me</SectionHeading>
+        <p className="mb-8 text-lg text-zinc-600 dark:text-zinc-300">
+          Full-stack developer passionate about creating exceptional digital experiences
+        </p>
+
+        <div className="glass-subtle card-spacing overflow-hidden rounded-3xl shadow-2xl">
+          <AboutContent />
         </div>
-      </div>
+      </Section>
     </main>
   );
 }

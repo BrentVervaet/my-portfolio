@@ -32,8 +32,8 @@ const Skills: React.FC<SkillsProps> = ({ skills = defaultSkills }) => {
                 title={`Learn more about ${skill.name}`}
                 aria-label={`Learn more about ${skill.name} - opens in new tab`}
               >
-                <div key={`icon-${skill.name}`} className="mb-3 glass-subtle rounded-xl p-4 text-4xl shadow-lg interactive md:text-5xl group-hover:shadow-xl">
-                  <Icon key={skill.name} aria-hidden="true" />
+                <div className="mb-3 glass-subtle rounded-xl p-4 text-4xl shadow-lg interactive md:text-5xl group-hover:shadow-xl">
+                  <Icon aria-hidden="true" />
                 </div>
                 <span className="text-center text-sm font-medium text-zinc-700 group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-zinc-100">
                   {skill.name}

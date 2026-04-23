@@ -8,6 +8,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 2rem; /* Offset for better scroll positioning */
 }
 
 /* Improve scrolling performance */
