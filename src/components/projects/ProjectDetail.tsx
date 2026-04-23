@@ -1,5 +1,5 @@
 'use client';
-import ProjectImageGallery from '@/components/projects/ProjectImageGallery';
+import ProjectImageCarousel from '@/components/projects/ProjectImageCarousel';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
@@ -58,7 +58,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="border-b border-white/10 p-4"
           >
-            <ProjectImageGallery images={project.images} projectTitle={project.title} />
+            <ProjectImageCarousel images={project.images} projectTitle={project.title} />
           </motion.div>
 
           {/* Project Info */}

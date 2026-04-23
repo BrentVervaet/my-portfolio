@@ -1,5 +1,5 @@
 'use client';
-import ProjectImageGallery from '@/components/projects/ProjectImageGallery';
+import ProjectImageCarousel from '@/components/projects/ProjectImageCarousel';
 import { Section, SectionHeading } from '@/components/Section';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -91,7 +91,7 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
           >
             {/*Images*/}
             <div className="p-4">
-              <ProjectImageGallery images={project.images} projectTitle={project.title} />
+              <ProjectImageCarousel images={project.images} projectTitle={project.title} />
             </div>
 
             {/*Content*/}
