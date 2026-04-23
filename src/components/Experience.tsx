@@ -27,17 +27,17 @@ const Experience = () => {
     <Section id="experience" size="default">
       <SectionHeading>Experience & Education</SectionHeading>
       <Tabs defaultValue="education" className="w-full" onValueChange={handleTabChange}>
-        <TabsList className="mb-12 grid h-14 w-full grid-cols-2 items-center justify-center rounded-3xl border border-white/20 bg-white/10 p-1.5 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-black/10">
+        <TabsList className="glass-subtle mb-12 grid h-14 w-full grid-cols-2 items-center justify-center rounded-3xl p-1.5 shadow-2xl">
           <TabsTrigger
             value="education"
-            className="ring-offset-background data-[state=active]:text-foreground inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-medium whitespace-nowrap transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white/20 data-[state=active]:shadow-lg data-[state=active]:backdrop-blur-lg dark:data-[state=active]:bg-white/10"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-medium whitespace-nowrap interactive focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=active]:glass data-[state=active]:shadow-lg"
           >
             <GraduationCap className="h-4 w-4" />
             <span className={activeTab === 'education' ? 'font-bold' : ''}>Education</span>
           </TabsTrigger>
           <TabsTrigger
             value="work"
-            className="ring-offset-background data-[state=active]:text-foreground inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-medium whitespace-nowrap transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white/20 data-[state=active]:shadow-lg data-[state=active]:backdrop-blur-lg dark:data-[state=active]:bg-white/10"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-medium whitespace-nowrap interactive focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=active]:glass data-[state=active]:shadow-lg"
           >
             <Briefcase className="h-4 w-4" />
             <span className={activeTab === 'work' ? 'font-bold' : ''}>Work</span>
@@ -54,7 +54,7 @@ const Experience = () => {
               transition={{ duration: 0.5, ease: 'easeInOut' }}
             >
               <TabsContent value={activeTab} forceMount>
-                <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-1">
+                <div className="content-spacing">
                   {currentData.map((item, index) => (
                     <motion.div
                       key={item.id}
@@ -106,18 +106,18 @@ const Experience = () => {
                             </div>
                           </div>
                         </CardHeader>
-                        <CardContent className="pt-0">
+                        <CardContent className="card-spacing pt-0">
                           <p className="mb-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
                             {item.description}
                           </p>
 
                           {item.responsibilities && item.responsibilities.length > 0 && (
                             <div className="mb-4">
-                              <h4 className="mb-2 flex items-center gap-2 text-sm font-semibold text-zinc-800 dark:text-zinc-200">
+                              <h4 className="mb-3 flex items-center gap-2 text-sm font-semibold text-zinc-800 dark:text-zinc-200">
                                 <Building className="h-4 w-4" />
                                 Key Responsibilities
                               </h4>
-                              <ul className="space-y-1">
+                              <ul className="space-y-2">
                                 {item.responsibilities.map((responsibility, idx) => (
                                   <li
                                     key={`${item.id}-resp-${idx}`}
@@ -140,7 +140,7 @@ const Experience = () => {
                                 {item.skills.map(skill => (
                                   <Badge
                                     key={skill}
-                                    className="rounded-full border border-zinc-200/50 bg-zinc-100/80 px-3 py-1 text-xs font-medium text-zinc-800 transition-all duration-200 hover:bg-zinc-200/90 dark:border-zinc-700/50 dark:bg-zinc-800/80 dark:text-zinc-200 dark:hover:bg-zinc-700/90"
+                                    className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-800 interactive dark:border-white/10 dark:bg-transparent dark:text-zinc-200"
                                   >
                                     {skill}
                                   </Badge>
@@ -150,12 +150,12 @@ const Experience = () => {
                           )}
 
                           {item.website && (
-                            <div className="mt-4 border-t border-white/10 pt-4">
+                            <div className="surface-divider mt-4 pt-4">
                               <a
                                 href={item.website}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                                className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 interactive hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                               >
                                 Visit Website
                                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
