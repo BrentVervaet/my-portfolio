@@ -25,6 +25,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.title,
     description: post.description,
+    keywords: ['Brent Vervaet', 'Blog', 'Web Development', ...post.tags],
+    authors: [{ name: 'Brent Vervaet' }],
     openGraph: {
       title: post.title,
       description: post.description,
@@ -32,6 +34,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       publishedTime: post.date,
       authors: ['Brent Vervaet'],
       tags: post.tags,
+      url: `https://brentvervaet.dev/blog/${slug}`,
+      siteName: 'Brent Vervaet - Portfolio',
+      images: [
+        {
+          url: '/images/home/brent-vervaet.webp',
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+      images: ['/images/home/brent-vervaet.webp'],
+      creator: '@brentieV',
+    },
+    alternates: {
+      canonical: `/blog/${slug}`,
     },
   };
 }
@@ -44,8 +66,36 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     notFound();
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      '@type': 'Person',
+      name: 'Brent Vervaet',
+      url: 'https://brentvervaet.dev',
+    },
+    keywords: post.tags.join(', '),
+    articleSection: 'Technology',
+    publisher: {
+      '@type': 'Person',
+      name: 'Brent Vervaet',
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://brentvervaet.dev/blog/${slug}`,
+    },
+  };
+
   return (
     <main className="mx-auto max-w-3xl px-4 py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <article>
         <Link
           href="/blog"

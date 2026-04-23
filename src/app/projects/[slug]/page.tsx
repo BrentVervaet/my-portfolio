@@ -89,5 +89,32 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     technologies: project.technologies,
   };
 
-  return <ProjectDetail project={enrichedProject} />;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: project.title,
+    description: project.longDescription || project.description,
+    creator: {
+      '@type': 'Person',
+      name: 'Brent Vervaet',
+      url: 'https://brentvervaet.dev',
+    },
+    dateCreated: project.date.toISOString(),
+    keywords: project.technologies.join(', '),
+    image: project.images[0] || '/images/home/brent-vervaet.webp',
+    ...(project.link && { url: project.link }),
+    ...(project.sourceCodeLink && {
+      codeRepository: project.sourceCodeLink,
+    }),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ProjectDetail project={enrichedProject} />
+    </>
+  );
 }

@@ -6,7 +6,33 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Articles about web development, programming, and technology.',
+  description: 'Articles about web development, programming, and technology by Brent Vervaet.',
+  keywords: ['Brent Vervaet', 'Blog', 'Web Development', 'Programming', 'Technology', 'Software Engineering'],
+  openGraph: {
+    title: 'Blog | Brent Vervaet',
+    description: 'Articles about web development, programming, and technology by Brent Vervaet.',
+    type: 'website',
+    url: 'https://brentvervaet.dev/blog',
+    siteName: 'Brent Vervaet - Portfolio',
+    images: [
+      {
+        url: '/images/home/brent-vervaet.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Brent Vervaet - Full-Stack Developer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog | Brent Vervaet',
+    description: 'Articles about web development, programming, and technology.',
+    images: ['/images/home/brent-vervaet.webp'],
+    creator: '@brentieV',
+  },
+  alternates: {
+    canonical: '/blog',
+  },
 };
 
 export default function BlogPage() {
