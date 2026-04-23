@@ -1,0 +1,193 @@
+---
+title: "Building TuneWithMe: A Full-Stack Web Tuner Application"
+date: "2024-12-15"
+description: "How I built a comprehensive instrument tuning platform with React, MySQL, and the Spotify API—going far beyond the initial exam requirements."
+tags: ["React", "MySQL", "REST API", "Full-Stack", "Web Development"]
+---
+
+# Building TuneWithMe: A Full-Stack Web Tuner Application
+
+What started as an exam project evolved into a comprehensive web application that I'm genuinely proud of. **TuneWithMe** is a full-stack tuning platform that allows musicians to explore instrument tunings, use a built-in tuner, and even customize their own tunings—all in one place.
+
+## The Challenge
+
+As a musician and developer, I've always been frustrated by the fragmented tuning information scattered across the internet. You'd need multiple websites to:
+- Find alternative tunings for different instruments
+- Access a reliable web-based tuner
+- Store your favorite custom tunings
+
+I wanted to solve this by creating a centralized platform that does it all.
+
+## Tech Stack
+
+- **Frontend**: React with Vite
+- **Styling**: Tailwind CSS
+- **Backend**: Node.js REST API
+- **Database**: MySQL
+- **External API**: Spotify API for music discovery
+
+## Key Features
+
+### 1. Instrument & Tuning Library
+
+The core feature is a comprehensive database of instruments and their tunings. Users can:
+- Browse all instruments alphabetically
+- Filter by categories (guitar, bass, ukulele, etc.)
+- View standard and alternative tunings for each instrument
+- Search for specific tunings
+
+```javascript
+// Example: Fetching tunings from the REST API
+const fetchTunings = async (instrumentId) => {
+  const response = await fetch(`/api/tunings?instrument=${instrumentId}`);
+  const data = await response.json();
+  return data.tunings;
+};
+```
+
+### 2. Built-in Web Tuner
+
+One of the most technically challenging features was implementing a functional web tuner using the Web Audio API:
+
+```javascript
+// Simplified tuner implementation
+const startTuner = async () => {
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  const audioContext = new AudioContext();
+  const analyser = audioContext.createAnalyser();
+  const microphone = audioContext.createMediaStreamSource(stream);
+  
+  microphone.connect(analyser);
+  analyser.fftSize = 2048;
+  
+  // Analyze frequency and detect pitch
+  detectPitch(analyser);
+};
+```
+
+The tuner provides real-time feedback with visual indicators showing whether you're sharp, flat, or perfectly in tune.
+
+### 3. Custom Tuning Support
+
+Users can create and save their own custom tunings—perfect for experimental musicians or those playing in unique styles.
+
+### 4. Dark Mode
+
+Because every modern web app needs it, and it's essential for musicians using the app in low-light environments like studios or stages.
+
+## Technical Challenges & Solutions
+
+### Challenge 1: Spotify API Integration
+
+Integrating the Spotify API taught me a lot about OAuth 2.0 flows:
+
+**Problem**: Managing token refresh and authentication state  
+**Solution**: Implemented a token refresh mechanism with automatic renewal before expiration
+
+```javascript
+const refreshAccessToken = async (refreshToken) => {
+  const response = await fetch('https://accounts.spotify.com/api/token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `Basic ${Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')}`
+    },
+    body: `grant_type=refresh_token&refresh_token=${refreshToken}`
+  });
+  
+  const data = await response.json();
+  return data.access_token;
+};
+```
+
+### Challenge 2: REST API Design
+
+This was my first time building a complete REST API from scratch:
+
+**Problem**: Structuring endpoints and database queries efficiently  
+**Solution**: Followed RESTful principles and learned about route organization, middleware, and proper HTTP status codes
+
+```javascript
+// Example: Tuning endpoints
+app.get('/api/tunings', getTunings);           // Get all
+app.get('/api/tunings/:id', getTuningById);    // Get one
+app.post('/api/tunings', createTuning);        // Create
+app.put('/api/tunings/:id', updateTuning);     // Update
+app.delete('/api/tunings/:id', deleteTuning);  // Delete
+```
+
+### Challenge 3: Frontend State Management
+
+Managing state across components without a state management library:
+
+**Problem**: Keeping user data, favorites, and tuning selections in sync  
+**Solution**: Lifted state up and used Context API for global state like authentication
+
+```javascript
+// Auth context for user state
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    // Check for stored session
+    checkSession();
+  }, []);
+  
+  return (
+    <AuthContext.Provider value={{ user, setUser, loading }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+```
+
+## Lessons Learned
+
+### 1. **Plan the Database Schema Early**
+
+I had to restructure my database twice because I didn't plan relationships properly from the start. Taking time to design your schema upfront saves hours of migration headaches later.
+
+### 2. **API Design Matters**
+
+Consistent naming conventions and proper REST principles make your API much easier to work with. Future-you will thank present-you.
+
+### 3. **User Experience > Feature Count**
+
+I initially wanted to add 10+ more features, but focusing on making the core features work *really well* was more valuable than adding half-baked functionality.
+
+### 4. **Responsive Design Is Non-Negotiable**
+
+Many musicians want to use a tuner on their phones. Making sure TuneWithMe worked flawlessly on mobile was crucial.
+
+## Performance Optimizations
+
+- **Lazy loading**: Heavy components load only when needed
+- **Database indexing**: Added indexes on frequently queried columns
+- **Caching**: Implemented basic caching for frequently accessed tunings
+- **Image optimization**: Compressed all instrument images
+
+## What's Next?
+
+While the core functionality is complete, here are features I'd like to add:
+
+- **Progressive Web App (PWA)**: Offline support for the tuner
+- **Community tunings**: Let users share their custom tunings
+- **Chord library**: Integrate chord diagrams for each tuning
+- **Practice tools**: Metronome and rhythm exercises
+
+## Try It Out
+
+The source code is available on [GitHub](https://github.com/brentvervaet/TuneWithMe), and while it's not currently deployed, you can clone and run it locally.
+
+## Key Takeaways
+
+Building TuneWithMe taught me that going beyond requirements and building something you're passionate about leads to the best learning experiences. Every challenge I faced—from OAuth flows to database design—became an opportunity to level up my skills.
+
+If you're working on a portfolio project, my advice: **pick something you'd actually use**. The motivation to make it great comes naturally when you're solving your own problems.
+
+---
+
+*Have questions about the implementation? Feel free to reach out on [LinkedIn](https://linkedin.com/in/brentvervaet) or check out the code on [GitHub](https://github.com/brentvervaet)!*

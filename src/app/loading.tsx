@@ -1,0 +1,10 @@
+export default function Loading() {
+  return (
+    <div className="flex min-h-[60vh] items-center justify-center">
+      <div className="text-center">
+        <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600"></div>
+        <p className="font-medium text-zinc-600 dark:text-zinc-400">Loading...</p>
+      </div>
+    </div>
+  );
+}

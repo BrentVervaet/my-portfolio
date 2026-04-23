@@ -1,0 +1,98 @@
+import { getBlogPost, getBlogPosts } from '@/lib/blog';
+import { Calendar, Clock } from 'lucide-react';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+
+export async function generateStaticParams() {
+  const posts = getBlogPosts();
+  return posts.map(post => ({
+    slug: post.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getBlogPost(slug);
+
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: 'article',
+      publishedTime: post.date,
+      authors: ['Brent Vervaet'],
+      tags: post.tags,
+    },
+  };
+}
+
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getBlogPost(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return (
+    <main className="mx-auto max-w-3xl px-4 py-8">
+      <article>
+        <Link
+          href="/blog"
+          className="mb-6 inline-flex items-center gap-2 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+        >
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to blog
+        </Link>
+
+        <header className="mb-8">
+          <h1 className="mb-4 font-mono text-4xl font-bold md:text-5xl">{post.title}</h1>
+
+          <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500 dark:text-zinc-400">
+            <time dateTime={post.date} className="flex items-center gap-1">
+              <Calendar className="h-4 w-4" />
+              {new Date(post.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+            <span className="flex items-center gap-1">
+              <Clock className="h-4 w-4" />
+              {post.readingTime}
+            </span>
+          </div>
+
+          {post.tags.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              {post.tags.map(tag => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-zinc-700 backdrop-blur-sm dark:border-white/10 dark:bg-black/10 dark:text-zinc-300"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </header>
+
+        <div className="prose prose-zinc prose-lg max-w-none dark:prose-invert prose-headings:font-mono prose-a:text-blue-600 prose-code:rounded prose-code:bg-zinc-100 prose-code:px-1 prose-code:py-0.5 prose-code:text-sm prose-code:before:content-[''] prose-code:after:content-[''] dark:prose-a:text-blue-400 dark:prose-code:bg-zinc-800">
+          <MDXRemote source={post.content} />
+        </div>
+      </article>
+    </main>
+  );
+}

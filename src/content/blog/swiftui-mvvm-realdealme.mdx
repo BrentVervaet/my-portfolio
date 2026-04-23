@@ -1,0 +1,422 @@
+---
+title: "Building RealDealMeal: My First SwiftUI App with MVVM"
+date: "2025-09-05"
+description: "Lessons learned from building an iOS recipe app with SwiftUI, MVVM architecture, and async/await—including the mistakes I made and how I fixed them."
+tags: ["Swift", "SwiftUI", "iOS", "MVVM", "Mobile Development"]
+---
+
+# Building RealDealMeal: My First SwiftUI App with MVVM
+
+As someone who primarily works with web technologies, diving into iOS development with SwiftUI was both exciting and humbling. **RealDealMeal** is a recipe discovery app I built for my iOS evaluation, and it taught me more about mobile development in a few weeks than I expected.
+
+## Why This Project?
+
+I wanted to build something practical that would force me to learn:
+- **SwiftUI**: Apple's modern declarative UI framework
+- **MVVM Architecture**: Proper separation of concerns
+- **Async/Await**: Modern Swift concurrency
+- **REST API Integration**: Working with TheMealDB API
+- **Data Persistence**: Local storage with `@AppStorage`
+
+## The App
+
+RealDealMeal lets users discover recipes through:
+- **Daily recommendations** based on categories
+- **Random recipe generator** for inspiration
+- **Category filtering** (desserts, seafood, chicken, etc.)
+- **Favorites** saved locally
+- **Detailed recipe views** with ingredients and instructions
+- **Search functionality**
+
+All data comes from [TheMealDB API](https://www.themealdb.com/api.php), which provides thousands of recipes for free.
+
+## Architecture: MVVM in SwiftUI
+
+Coming from React, SwiftUI's declarative nature felt familiar, but MVVM was new to me. Here's how I structured it:
+
+### Model
+
+```swift
+struct Meal: Codable, Identifiable, Equatable {
+    let idMeal: String
+    let strMeal: String
+    let strCategory: String?
+    let strMealThumb: String?
+    let strInstructions: String?
+    
+    var id: String { idMeal }
+    
+    // Computed property for ingredients
+    var ingredients: [String] {
+        // Parse ingredient fields from API response
+        // ...
+    }
+}
+```
+
+### ViewModel
+
+The ViewModel handles all business logic and API calls:
+
+```swift
+@MainActor
+class MealViewModel: ObservableObject {
+    @Published var meals: [Meal] = []
+    @Published var isLoading = false
+    @Published var errorMessage: String?
+    
+    private let apiService = MealAPIService()
+    
+    func fetchMeals(by category: String) async {
+        isLoading = true
+        errorMessage = nil
+        
+        do {
+            meals = try await apiService.fetchMeals(by: category)
+        } catch {
+            errorMessage = "Failed to load meals: \(error.localizedDescription)"
+        }
+        
+        isLoading = false
+    }
+    
+    func searchMeals(query: String) async {
+        // Search implementation
+    }
+}
+```
+
+### View
+
+Views are purely presentational and react to ViewModel state:
+
+```swift
+struct MealListView: View {
+    @StateObject private var viewModel = MealViewModel()
+    @State private var selectedCategory = "Seafood"
+    
+    var body: some View {
+        NavigationStack {
+            Group {
+                if viewModel.isLoading {
+                    ProgressView("Loading recipes...")
+                } else if let error = viewModel.errorMessage {
+                    ErrorView(message: error) {
+                        Task {
+                            await viewModel.fetchMeals(by: selectedCategory)
+                        }
+                    }
+                } else {
+                    MealGrid(meals: viewModel.meals)
+                }
+            }
+            .navigationTitle("Recipes")
+            .task {
+                await viewModel.fetchMeals(by: selectedCategory)
+            }
+        }
+    }
+}
+```
+
+## Major Challenges & Solutions
+
+### Challenge 1: Handling Optionals in API Responses
+
+**Problem**: TheMealDB API returns different fields for different meals. Some have thumbnails, some don't. Some have complete instructions, others are missing data.
+
+```swift
+struct MealResponse: Codable {
+    let meals: [Meal]?  // Can be nil!
+}
+
+struct Meal: Codable {
+    let strMealThumb: String?      // Optional
+    let strInstructions: String?    // Optional
+    // ... many more optional fields
+}
+```
+
+**Solution**: Implemented defensive parsing and default values:
+
+```swift
+extension Meal {
+    var thumbnailURL: URL? {
+        guard let urlString = strMealThumb else { return nil }
+        return URL(string: urlString)
+    }
+    
+    var instructions: String {
+        strInstructions ?? "No instructions available."
+    }
+    
+    var hasValidData: Bool {
+        strMealThumb != nil && strInstructions != nil
+    }
+}
+```
+
+### Challenge 2: Async/Await with Multiple API Calls
+
+**Problem**: I needed to fetch random meals AND category-based meals simultaneously for the home screen.
+
+**Initial (Wrong) Approach**:
+```swift
+// This doesn't work - they run sequentially!
+func fetchHomeData() async {
+    await fetchRandomMeals()
+    await fetchCategoryMeals()  // Waits for random meals first
+}
+```
+
+**Correct Solution using async let**:
+```swift
+func fetchHomeData() async {
+    async let randomMeals = apiService.fetchRandomMeals(count: 5)
+    async let categoryMeals = apiService.fetchMeals(by: "Seafood")
+    
+    do {
+        let (random, category) = try await (randomMeals, categoryMeals)
+        self.randomMeals = random
+        self.categoryMeals = category
+    } catch {
+        errorMessage = error.localizedDescription
+    }
+}
+```
+
+This runs both calls **concurrently**, making the app much faster!
+
+### Challenge 3: Duplicate IDs in ForEach
+
+**Problem**: When displaying random meals, Swift complained about duplicate IDs because the API sometimes returns the same meal twice.
+
+```swift
+// This crashes with duplicate ID error
+ForEach(randomMeals) { meal in
+    MealCard(meal: meal)
+}
+```
+
+**Solution**: Added uniquing logic in the ViewModel:
+
+```swift
+func fetchRandomMeals(count: Int) async {
+    var uniqueMeals: [Meal] = []
+    var attempts = 0
+    
+    while uniqueMeals.count < count && attempts < count * 2 {
+        if let meal = try? await apiService.fetchRandomMeal() {
+            if !uniqueMeals.contains(where: { $0.id == meal.id }) {
+                uniqueMeals.append(meal)
+            }
+        }
+        attempts += 1
+    }
+    
+    self.randomMeals = uniqueMeals
+}
+```
+
+### Challenge 4: Favorites Persistence
+
+**Problem**: Favorites needed to persist across app launches, but `@AppStorage` doesn't support complex types like `[Meal]`.
+
+**Solution**: Stored only IDs and reconstructed favorites on demand:
+
+```swift
+class FavoritesManager: ObservableObject {
+    @AppStorage("favoriteIDs") private var favoriteIDsData: Data = Data()
+    
+    @Published var favoriteIDs: Set<String> = []
+    
+    init() {
+        loadFavorites()
+    }
+    
+    private func loadFavorites() {
+        if let decoded = try? JSONDecoder().decode(Set<String>.self, from: favoriteIDsData) {
+            favoriteIDs = decoded
+        }
+    }
+    
+    func toggle(_ mealID: String) {
+        if favoriteIDs.contains(mealID) {
+            favoriteIDs.remove(mealID)
+        } else {
+            favoriteIDs.insert(mealID)
+        }
+        saveFavorites()
+    }
+    
+    private func saveFavorites() {
+        if let encoded = try? JSONEncoder().encode(favoriteIDs) {
+            favoriteIDsData = encoded
+        }
+    }
+}
+```
+
+## SwiftUI vs React: Key Differences
+
+Coming from React, here were the biggest mental shifts:
+
+### 1. **State Management**
+
+**React:**
+```javascript
+const [count, setCount] = useState(0);
+```
+
+**SwiftUI:**
+```swift
+@State private var count = 0
+```
+
+The `@State` property wrapper automatically triggers UI updates—similar to React's state but more implicit.
+
+### 2. **Props vs Property Wrappers**
+
+**React:** Pass props down
+```javascript
+<Child value={count} onChange={setCount} />
+```
+
+**SwiftUI:** Use `@Binding` for two-way binding
+```swift
+ChildView(count: $count)  // $ creates a binding
+
+struct ChildView: View {
+    @Binding var count: Int
+}
+```
+
+### 3. **Side Effects**
+
+**React:**
+```javascript
+useEffect(() => {
+    fetchData();
+}, [dependency]);
+```
+
+**SwiftUI:**
+```swift
+.task {
+    await fetchData()
+}
+// Or
+.onChange(of: dependency) { newValue in
+    // React to changes
+}
+```
+
+## Adaptive UI: iPhone & iPad Support
+
+One of SwiftUI's superpowers is adaptive layouts. Here's how I made RealDealMeal work on all screen sizes:
+
+```swift
+struct MealGrid: View {
+    let meals: [Meal]
+    
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    var columns: [GridItem] {
+        if horizontalSizeClass == .compact {
+            // iPhone portrait: 2 columns
+            return [GridItem(.flexible()), GridItem(.flexible())]
+        } else {
+            // iPhone landscape or iPad: 3-4 columns
+            return Array(repeating: GridItem(.flexible()), count: 4)
+        }
+    }
+    
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 16) {
+                ForEach(meals) { meal in
+                    NavigationLink(value: meal) {
+                        MealCard(meal: meal)
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+## Performance Optimizations
+
+1. **LazyVGrid** instead of VStack for large lists
+2. **AsyncImage** for automatic image loading and caching
+3. **Task** for automatic cancellation when views disappear
+4. **MainActor** to ensure UI updates on the main thread
+
+```swift
+// AsyncImage with placeholder and caching
+AsyncImage(url: meal.thumbnailURL) { phase in
+    switch phase {
+    case .empty:
+        ProgressView()
+    case .success(let image):
+        image
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+    case .failure:
+        Image(systemName: "photo")
+            .foregroundColor(.gray)
+    @unknown default:
+        EmptyView()
+    }
+}
+.frame(height: 200)
+.clipped()
+```
+
+## Testing on Real Devices
+
+The simulator is great, but testing on my actual iPhone revealed:
+- **Network delays** were more noticeable → Added better loading states
+- **Touch targets** needed to be bigger → Increased button sizes
+- **Dark mode** looked different → Adjusted colors
+- **Safe areas** behaved differently → Used `.safeAreaInset` properly
+
+## Lessons Learned
+
+### 1. **MVVM Makes Sense**
+
+Separating Views, ViewModels, and Models makes the code much cleaner and testable. React could learn from this.
+
+### 2. **Swift is Strict (In a Good Way)**
+
+Coming from JavaScript/TypeScript, Swift's type system feels *very* strict. But it catches so many bugs at compile time.
+
+### 3. **SwiftUI is Powerful but Young**
+
+Some things that are trivial in React (like custom animations) are harder in SwiftUI. But when it works, it works beautifully.
+
+### 4. **Apple's Documentation is Great**
+
+The official SwiftUI tutorials and documentation are excellent. Use them.
+
+## What I'd Do Differently
+
+Looking back, here's what I'd change:
+
+1. **Test earlier** with real API data, not mock data
+2. **Design the data model first**, then build the API service
+3. **Use Combine** for more complex state management
+4. **Add unit tests** from the start
+5. **Cache API responses** more aggressively
+
+## Final Thoughts
+
+Building RealDealMeal was challenging but incredibly rewarding. It proved that the skills I learned in web development translate to mobile—just with different syntax and patterns.
+
+If you're a web developer considering iOS development: **do it**. SwiftUI is surprisingly approachable, and the iOS ecosystem is a joy to work with.
+
+---
+
+**Source Code**: [GitHub Repository](https://github.com/brentvervaet/RealDealMeal)
+
+*Questions about SwiftUI or iOS development? Feel free to connect on [LinkedIn](https://linkedin.com/in/brentvervaet)!*
