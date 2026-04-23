@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import SocialLinks from '@/components/SocialsLinks';
 
-export default function Footer() {
+const Footer = memo(function Footer() {
   return (
     <footer className="border-t border-white/10 bg-transparent dark:border-white/5">
       <div className="mx-auto max-w-6xl p-8">
@@ -19,4 +19,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+});
+
+export default Footer;

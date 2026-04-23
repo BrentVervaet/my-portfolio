@@ -1,3 +1,4 @@
+// Import only needed icons (optimized by Next.js experimental.optimizePackageImports)
 import { FaJava } from 'react-icons/fa';
 import {
   SiCss,

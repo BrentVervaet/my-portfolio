@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { Download } from 'lucide-react';
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 
 type SocialLink = {
   href: string;
@@ -16,8 +16,9 @@ type SocialLinksProps = {
   showResumeButton?: boolean;
 };
 
-export default function SocialLinks({ className = '', showResumeButton = false }: Readonly<SocialLinksProps>) {
-  const socialLinks: SocialLink[] = [
+const SocialLinks = memo(function SocialLinks({ className = '', showResumeButton = false }: Readonly<SocialLinksProps>) {
+  // Memoize social links array to prevent recreation on every render
+  const socialLinks: SocialLink[] = useMemo(() => [
     {
       href: 'https://github.com/brentvervaet',
       ariaLabel: 'GitHub',
@@ -52,7 +53,7 @@ export default function SocialLinks({ className = '', showResumeButton = false }
         </svg>
       ),
     },
-  ];
+  ], []);
 
   return (
     <div className={`flex items-center space-x-3 text-zinc-200 ${className}`}>
@@ -90,4 +91,6 @@ export default function SocialLinks({ className = '', showResumeButton = false }
       )}
     </div>
   );
-}
+});
+
+export default SocialLinks;

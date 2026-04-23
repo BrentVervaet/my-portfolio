@@ -1,7 +1,7 @@
 'use client';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, memo } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProjectImageCarouselProps {
@@ -9,7 +9,7 @@ interface ProjectImageCarouselProps {
   projectTitle?: string;
 }
 
-export default function ProjectImageCarousel({ images, projectTitle = 'Project' }: ProjectImageCarouselProps) {
+const ProjectImageCarousel = memo(function ProjectImageCarousel({ images, projectTitle = 'Project' }: ProjectImageCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
@@ -126,4 +126,6 @@ export default function ProjectImageCarousel({ images, projectTitle = 'Project' 
       )}
     </div>
   );
-}
+});
+
+export default ProjectImageCarousel;

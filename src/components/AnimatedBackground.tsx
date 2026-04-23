@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, memo } from 'react';
 
 /**
  * Animated mesh gradient background using canvas
  * Creates a modern, subtle animated background with moving gradient orbs
+ * Memoized to prevent unnecessary re-renders
  */
-export default function AnimatedBackground() {
+const AnimatedBackground = memo(function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -104,4 +105,6 @@ export default function AnimatedBackground() {
       aria-hidden="true"
     />
   );
-}
+});
+
+export default AnimatedBackground;

@@ -3,13 +3,13 @@ import { Section, SectionHeading } from '@/components/Section';
 import { scaleOnHoverLarge } from '@/lib/animations';
 import { skills as defaultSkills, type Skill } from '@/data/skills';
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { memo } from 'react';
 
 interface SkillsProps {
   skills?: Skill[];
 }
 
-const Skills: React.FC<SkillsProps> = ({ skills = defaultSkills }) => {
+const Skills: React.FC<SkillsProps> = memo(({ skills = defaultSkills }) => {
   return (
     <Section id="skills" size="default">
       <SectionHeading id="skills-section">Skills & Technologies</SectionHeading>
@@ -45,6 +45,8 @@ const Skills: React.FC<SkillsProps> = ({ skills = defaultSkills }) => {
       </div>
     </Section>
   );
-};
+});
+
+Skills.displayName = 'Skills';
 
 export default Skills;

@@ -5,17 +5,20 @@ import { education, workExperience, type ExperienceItem } from '@/data/experienc
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Briefcase, Calendar, GraduationCap, MapPin } from 'lucide-react';
+import { memo, useMemo } from 'react';
 
-const Experience = () => {
-  // Combine and sort all experiences by date (most recent first)
-  const allExperiences = [...workExperience, ...education].sort((a, b) => {
-    // Extract year from period string (assumes format "YYYY - Present" or "YYYY - YYYY")
-    const getStartYear = (period: string) => {
-      const match = period.match(/(\d{4})/);
-      return match ? parseInt(match[1]) : 0;
-    };
-    return getStartYear(b.period) - getStartYear(a.period);
-  });
+const Experience = memo(function Experience() {
+  // Memoize the combined and sorted experiences to avoid re-computation
+  const allExperiences = useMemo(() => {
+    return [...workExperience, ...education].sort((a, b) => {
+      // Extract year from period string (assumes format "YYYY - Present" or "YYYY - YYYY")
+      const getStartYear = (period: string) => {
+        const match = period.match(/(\d{4})/);
+        return match ? parseInt(match[1]) : 0;
+      };
+      return getStartYear(b.period) - getStartYear(a.period);
+    });
+  }, []);
 
   return (
     <Section id="experience" size="default">
@@ -174,6 +177,6 @@ const Experience = () => {
       </div>
     </Section>
   );
-};
+});
 
 export default Experience;

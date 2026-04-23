@@ -14,17 +14,20 @@ interface ProjectsProps {
 const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjects }) => {
   const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
 
-  const sortedProjects = [...projects].sort((a, b) => {
-    if (sortOrder === 'newest') {
-      return b.date.getTime() - a.date.getTime();
-    } else {
-      return a.date.getTime() - b.date.getTime();
-    }
-  });
+  // Memoize sorted projects to avoid re-sorting on every render
+  const sortedProjects = React.useMemo(() => {
+    return [...projects].sort((a, b) => {
+      if (sortOrder === 'newest') {
+        return b.date.getTime() - a.date.getTime();
+      } else {
+        return a.date.getTime() - b.date.getTime();
+      }
+    });
+  }, [projects, sortOrder]);
 
-  const toggleSortOrder = () => {
-    setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest');
-  };
+  const toggleSortOrder = React.useCallback(() => {
+    setSortOrder(prev => prev === 'newest' ? 'oldest' : 'newest');
+  }, []);
 
   return (
     <Section id="projects">
