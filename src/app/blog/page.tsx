@@ -17,7 +17,7 @@ export default function BlogPage() {
       <main className="mx-auto max-w-4xl px-4 py-8">
         <Section>
           <SectionHeading>Blog</SectionHeading>
-          <div className="glass-subtle rounded-3xl border border-white/20 p-12 text-center shadow-2xl dark:border-white/10">
+          <div className="glass-subtle card-spacing rounded-3xl text-center shadow-2xl">
             <p className="text-lg text-zinc-600 dark:text-zinc-400">
               No blog posts yet. Check back soon for articles on web development, programming, and more!
             </p>
@@ -35,12 +35,12 @@ export default function BlogPage() {
           Thoughts on web development, programming, and technology.
         </p>
 
-        <div className="space-y-6">
+        <div className="content-spacing">
           {posts.map(post => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="glass-subtle group block overflow-hidden rounded-3xl border border-white/20 p-6 shadow-2xl transition-all hover:scale-[1.01] hover:shadow-3xl dark:border-white/10"
+              className="glass-subtle card-spacing group block overflow-hidden rounded-3xl shadow-2xl interactive interactive-hover"
             >
               <article>
                 <h2 className="mb-2 font-mono text-2xl font-bold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
@@ -69,7 +69,7 @@ export default function BlogPage() {
                     {post.tags.map(tag => (
                       <span
                         key={tag}
-                        className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-zinc-700 backdrop-blur-sm dark:border-white/10 dark:bg-black/10 dark:text-zinc-300"
+                        className="glass-subtle rounded-full px-3 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300"
                       >
                         {tag}
                       </span>

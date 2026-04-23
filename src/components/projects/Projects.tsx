@@ -1,5 +1,5 @@
 'use client';
-import ProjectImageCarousel from '@/components/projects/ProjectImageCarousel';
+import ProjectImageGallery from '@/components/projects/ProjectImageGallery';
 import { Section, SectionHeading } from '@/components/Section';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -87,15 +87,15 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
         {sortedProjects.map(project => (
           <div
             key={project.title}
-            className="group glass-subtle hover:shadow-3xl flex flex-col overflow-hidden rounded-3xl border border-white/20 p-0 shadow-2xl transition-all will-change-transform hover:scale-[1.02] dark:border-white/10"
+            className="group glass-subtle flex flex-col overflow-hidden rounded-3xl shadow-2xl transition-all interactive interactive-hover"
           >
             {/*Images*/}
-            <div className="surface-divider py-2">
-              <ProjectImageCarousel images={project.images} projectTitle={project.title} />
+            <div className="p-4">
+              <ProjectImageGallery images={project.images} projectTitle={project.title} />
             </div>
 
             {/*Content*/}
-            <div className="p-6">
+            <div className="card-spacing pt-2">
               <div className="flex items-start justify-between">
                 <Link
                   href={`/projects/${project.title.toLowerCase().replaceAll(/\s+/g, '-')}`}
@@ -131,7 +131,7 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
             </div>
 
             {/*Links*/}
-            <div className="surface-divider flex flex-wrap gap-4 p-6 pt-4">
+            <div className="surface-divider flex flex-wrap gap-3 px-6 pb-6 pt-4">
               {project.link && (
                 <Button
                   asChild

@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               {post.tags.map(tag => (
                 <span
                   key={tag}
-                  className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-zinc-700 backdrop-blur-sm dark:border-white/10 dark:bg-black/10 dark:text-zinc-300"
+                  className="glass-subtle rounded-full px-3 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300"
                 >
                   {tag}
                 </span>

@@ -1,5 +1,5 @@
 'use client';
-import ProjectImageCarousel from '@/components/projects/ProjectImageCarousel';
+import ProjectImageGallery from '@/components/projects/ProjectImageGallery';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
@@ -50,19 +50,19 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
           </Link>
         </motion.div>
 
-        <div className="overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-black/20">
+        <div className="glass overflow-hidden rounded-2xl shadow-lg">
           {/* Project Images */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="border-b border-white/10 p-2"
+            className="border-b border-white/10 p-4"
           >
-            <ProjectImageCarousel images={project.images} projectTitle={project.title} size="large" />
+            <ProjectImageGallery images={project.images} projectTitle={project.title} />
           </motion.div>
 
           {/* Project Info */}
-          <div className="p-6">
+          <div className="card-spacing">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -87,10 +87,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
+                className="glass-subtle mb-6 rounded-xl p-4"
               >
                 <h2 className="mb-2 font-mono text-lg font-semibold">About This Project</h2>
-                <p className="text-sm text-zinc-700">{project.longDescription}</p>
+                <p className="text-sm text-zinc-700 dark:text-zinc-300">{project.longDescription}</p>
               </motion.div>
             )}
 
@@ -101,10 +101,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ amount: 0.2 }}
                 transition={{ duration: 0.6 }}
-                className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
+                className="glass-subtle mb-6 rounded-xl p-4"
               >
                 <h2 className="mb-2 font-mono text-lg font-semibold">Key Features</h2>
-                <ul className="ml-5 list-disc space-y-1 text-sm text-zinc-700">
+                <ul className="ml-5 list-disc space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
                   {project.features.map((feature, index) => (
                     <li key={index}>{feature}</li>
                   ))}
@@ -119,10 +119,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ amount: 0.2 }}
                 transition={{ duration: 0.6 }}
-                className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
+                className="glass-subtle mb-6 rounded-xl p-4"
               >
                 <h2 className="mb-2 font-mono text-lg font-semibold">Challenges & Solutions</h2>
-                <ul className="ml-5 list-disc space-y-1 text-sm text-zinc-700">
+                <ul className="ml-5 list-disc space-y-1 text-sm text-zinc-700 dark:text-zinc-300">
                   {project.challenges.map((challenge, index) => (
                     <li key={index}>{challenge}</li>
                   ))}
@@ -137,15 +137,15 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ amount: 0.2 }}
                 transition={{ duration: 0.6 }}
-                className="mb-6 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
+                className="glass-subtle mb-6 rounded-xl p-4"
               >
                 <h2 className="mb-2 font-mono text-lg font-semibold">Technologies Used</h2>
-                <div className="flex flex-wrap gap-1">
+                <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, index) => (
                     <Badge
                       key={index}
                       variant="outline"
-                      className="rounded-full bg-white/10 px-3 py-0.5 text-xs backdrop-blur-sm"
+                      className="glass-subtle rounded-full px-3 py-0.5 text-xs"
                     >
                       {tech}
                     </Badge>

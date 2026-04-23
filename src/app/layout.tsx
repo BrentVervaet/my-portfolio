@@ -1,6 +1,7 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import PageTransition from '@/components/PageTransition';
+import AnimatedBackground from '@/components/AnimatedBackground';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
@@ -118,10 +119,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
 
       <body
-        className={`flex min-h-screen flex-col bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-sans text-zinc-900 antialiased dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 dark:text-white`}
+        className={`flex min-h-screen flex-col bg-slate-50 font-sans text-zinc-900 antialiased dark:bg-slate-950 dark:text-white`}
       >
+        <AnimatedBackground />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <div className="mx-auto max-w-7xl grow px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 mx-auto max-w-7xl grow px-4 sm:px-6 lg:px-8">
             <Header />
             <PageTransition>{children}</PageTransition>
           </div>

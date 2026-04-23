@@ -62,7 +62,7 @@ const Experience = () => {
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <Card className="group glass-subtle hover:shadow-3xl overflow-hidden border border-white/20 shadow-2xl transition-all duration-300 hover:scale-[1.02] dark:border-white/10">
+                      <Card className="group glass-subtle overflow-hidden shadow-2xl interactive interactive-hover">
                         <CardHeader className="pb-4">
                           <div className="flex items-start gap-4">
                             <motion.div
