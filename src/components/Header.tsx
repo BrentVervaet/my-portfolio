@@ -3,7 +3,6 @@ import SocialLinks from '@/components/SocialsLinks';
 import ThemeToggle from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { handleAnchorClick } from '@/lib/scroll';
 import { DURATION, EASE, scaleOnHover } from '@/lib/animations';
 import { motion } from 'framer-motion';
 import { Menu } from 'lucide-react';

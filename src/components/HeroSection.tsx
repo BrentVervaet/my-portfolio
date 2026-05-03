@@ -1,6 +1,6 @@
 'use client';
 import { AnimatedAvatar } from '@/components/AnimatedAvatar';
-import { Section, SectionHeading } from '@/components/Section';
+import { SectionHeading } from '@/components/Section';
 import SocialLinks from '@/components/SocialsLinks';
 import { WaveEmoji } from '@/components/WaveEmoji';
 import { DURATION, EASE } from '@/lib/animations';
@@ -23,7 +23,7 @@ const HeroSection = () => {
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
           <SectionHeading
             as="h1"
-            className="mb-4 text-3xl font-bold leading-tight sm:mb-5 sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl xl:text-7xl"
+            className="mb-4 text-3xl leading-tight font-bold sm:mb-5 sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl xl:text-7xl"
           >
             Hi, I&apos;m Brent <WaveEmoji />
           </SectionHeading>
