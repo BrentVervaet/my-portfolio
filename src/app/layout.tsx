@@ -128,9 +128,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <AnimatedBackground />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Header />
-          <div className="relative z-10 mx-auto max-w-7xl grow px-4 sm:px-6 lg:px-8">
-            <PageTransition>{children}</PageTransition>
-          </div>
+          <PageTransition>{children}</PageTransition>
           <Footer />
         </ThemeProvider>
         <Analytics />

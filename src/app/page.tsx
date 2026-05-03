@@ -21,22 +21,24 @@ const Projects = dynamic(() => import('@/components/projects/Projects'), {
 
 export default function Home() {
   return (
-    <main className="mx-auto max-w-6xl px-4 py-8">
+    <main>
       <AnimatedSection {...fadeInUp} transition={transitionNormal}>
         <HeroSection />
       </AnimatedSection>
 
-      <AnimatedSection {...fadeInUpScroll}>
-        <Experience />
-      </AnimatedSection>
+      <div className="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+        <AnimatedSection {...fadeInUpScroll}>
+          <Experience />
+        </AnimatedSection>
 
-      <AnimatedSection {...fadeInUpScroll}>
-        <Skills />
-      </AnimatedSection>
+        <AnimatedSection {...fadeInUpScroll}>
+          <Skills />
+        </AnimatedSection>
 
-      <AnimatedSection {...fadeInUpScroll}>
-        <Projects />
-      </AnimatedSection>
+        <AnimatedSection {...fadeInUpScroll}>
+          <Projects />
+        </AnimatedSection>
+      </div>
     </main>
   );
 }

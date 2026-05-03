@@ -46,7 +46,7 @@ export default function Header() {
 
   return (
     <motion.header
-      className="sticky top-0 right-0 left-0 z-50 w-screen bg-gradient-to-b from-white/90 via-white/70 to-transparent backdrop-blur-md transition-all dark:from-slate-950/90 dark:via-slate-950/70 dark:to-transparent"
+      className="fixed top-0 right-0 left-0 z-50 w-screen bg-gradient-to-b from-white/90 via-white/70 to-transparent backdrop-blur-md transition-all dark:from-slate-950/90 dark:via-slate-950/70 dark:to-transparent"
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{ duration: DURATION.NORMAL, ease: EASE }}
