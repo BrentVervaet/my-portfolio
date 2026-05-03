@@ -2,7 +2,7 @@
 import { Section, SectionHeading } from '@/components/Section';
 import { Badge } from '@/components/ui/badge';
 import { education, workExperience } from '@/data/experience';
-import { VIEWPORT_CONFIG, transitionFast, transitionNormal } from '@/lib/animations';
+import { transitionFast, transitionNormal, VIEWPORT_CONFIG } from '@/lib/animations';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Briefcase, Calendar, GraduationCap, MapPin } from 'lucide-react';
