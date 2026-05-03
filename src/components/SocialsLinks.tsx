@@ -62,7 +62,7 @@ const SocialLinks = memo(function SocialLinks({
   );
 
   return (
-    <div className={`flex items-center space-x-3 text-zinc-200 ${className}`}>
+    <div className={`flex items-center space-x-3 text-zinc-700 dark:text-zinc-200 ${className}`}>
       {socialLinks.map(link => (
         <motion.a
           key={link.ariaLabel}

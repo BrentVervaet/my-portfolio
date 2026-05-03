@@ -39,8 +39,8 @@ body {
 }
 
 ::selection {
-    background-color: rgba(99, 102, 241, 0.2);
-    color: rgb(67, 56, 202);
+    background-color: rgba(251, 146, 60, 0.2);
+    color: rgb(234, 88, 12);
 }
 
 .dark ::selection {

@@ -1,26 +1,59 @@
 'use client';
 import SocialLinks from '@/components/SocialsLinks';
+import ThemeToggle from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { handleAnchorClick } from '@/lib/scroll';
 import { motion } from 'framer-motion';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
 
+  useEffect(() => {
+    const controlHeader = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < 10) {
+        // Always show header at the top
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setIsVisible(false);
+      } else {
+        // Scrolling up
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', controlHeader);
+
+    return () => {
+      window.removeEventListener('scroll', controlHeader);
+    };
+  }, [lastScrollY]);
+
   return (
-    <nav className="relative z-50 flex items-center justify-between px-4 pt-8">
+    <motion.nav
+      className="sticky top-0 z-50 flex items-center justify-between px-4 pt-8 pb-4 transition-all"
+      initial={{ y: 0 }}
+      animate={{ y: isVisible ? 0 : -100 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+    >
       <motion.div whileTap={{ scale: 0.9 }}>
         <Link
           href="/"
-          className="font-mono text-2xl font-bold transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+          className="font-mono text-2xl font-bold transition-colors hover:text-orange-600 dark:hover:text-blue-400"
         >
           <motion.div
             initial={{ opacity: 0, x: -300 }}
@@ -34,7 +67,7 @@ export default function Header() {
         </Link>
       </motion.div>
 
-      {/* Mobile menu with Sheet component */}
+      {/* Mobile menu */}
       <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
         {!isMenuOpen && (
           <SheetTrigger asChild>
@@ -84,6 +117,9 @@ export default function Header() {
               </Link>
             </motion.div>
 
+            {/* Theme toggle */}
+            <ThemeToggle />
+
             {/* Social links */}
             <SocialLinks showResumeButton={false} />
           </div>
@@ -97,7 +133,7 @@ export default function Header() {
             <Link
               href="/#projects"
               onClick={e => handleAnchorClick(e, '#projects')}
-              className="rounded-full border border-white/20 bg-white/10 px-4 py-2 shadow-lg backdrop-blur-md transition-all hover:bg-white/20 hover:text-blue-600 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30 dark:hover:text-blue-400"
+              className="rounded-full border border-white/20 bg-white/10 px-4 py-2 shadow-lg backdrop-blur-md transition-all hover:bg-white/20 hover:text-orange-600 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30 dark:hover:text-blue-400"
             >
               Projects
             </Link>
@@ -108,7 +144,7 @@ export default function Header() {
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link
               href="/blog"
-              className="rounded-full border border-white/20 bg-white/10 px-4 py-2 shadow-lg backdrop-blur-md transition-all hover:bg-white/20 hover:text-blue-600 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30 dark:hover:text-blue-400"
+              className="rounded-full border border-white/20 bg-white/10 px-4 py-2 shadow-lg backdrop-blur-md transition-all hover:bg-white/20 hover:text-orange-600 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30 dark:hover:text-blue-400"
             >
               Blog
             </Link>
@@ -119,13 +155,17 @@ export default function Header() {
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link
               href="/about"
-              className="rounded-full border border-white/20 bg-white/10 px-4 py-2 shadow-lg backdrop-blur-md transition-all hover:bg-white/20 hover:text-blue-600 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30 dark:hover:text-blue-400"
+              className="rounded-full border border-white/20 bg-white/10 px-4 py-2 shadow-lg backdrop-blur-md transition-all hover:bg-white/20 hover:text-orange-600 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30 dark:hover:text-blue-400"
             >
               About
             </Link>
           </motion.div>
         </motion.div>
+
+        <motion.div initial={{ opacity: 0, x: 120 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
+          <ThemeToggle />
+        </motion.div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }

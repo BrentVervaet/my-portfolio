@@ -37,7 +37,7 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
           variant="ghost"
           size="sm"
           onClick={toggleSortOrder}
-          className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm shadow-lg backdrop-blur-md transition-all hover:scale-105 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none active:scale-95 dark:border-white/10 dark:bg-black/20"
+          className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm shadow-lg backdrop-blur-md transition-all hover:scale-105 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:outline-none active:scale-95 dark:border-white/10 dark:bg-black/20 dark:focus:ring-blue-500"
           title={sortOrder === 'newest' ? 'Sort by oldest first' : 'Sort by latest first'}
           aria-label={`Currently sorting by ${sortOrder} projects. Click to sort by ${sortOrder === 'newest' ? 'oldest' : 'newest'} projects`}
         >
@@ -102,10 +102,10 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
               <div className="flex items-start justify-between">
                 <Link
                   href={`/projects/${project.title.toLowerCase().replaceAll(/\s+/g, '-')}`}
-                  className="group-hover:text-primary rounded-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent focus:outline-none"
+                  className="group-hover:text-primary rounded-lg focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-transparent focus:outline-none dark:focus:ring-blue-500"
                   aria-label={`View details for ${project.title} project`}
                 >
-                  <h3 className="font-mono text-xl font-bold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                  <h3 className="font-mono text-xl font-bold transition-colors group-hover:text-orange-600 dark:group-hover:text-blue-400">
                     {project.title}
                   </h3>
                 </Link>

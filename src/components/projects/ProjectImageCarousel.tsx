@@ -119,7 +119,7 @@ const ProjectImageCarousel = memo(function ProjectImageCarousel({
               onClick={() => scrollTo(index)}
               className={`h-1.5 w-1.5 rounded-full transition-all sm:h-2 sm:w-2 ${
                 index === selectedIndex
-                  ? 'w-6 bg-blue-500 sm:w-8'
+                  ? 'w-6 bg-orange-500 sm:w-8 dark:bg-blue-500'
                   : 'bg-white/30 hover:bg-white/50 dark:bg-white/20 dark:hover:bg-white/40'
               }`}
               aria-label={`Go to image ${index + 1}`}

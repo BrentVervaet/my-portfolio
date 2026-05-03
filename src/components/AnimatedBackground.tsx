@@ -1,14 +1,17 @@
 'use client';
 
 import { memo, useEffect, useRef } from 'react';
+import { useTheme } from 'next-themes';
 
 /**
  * Animated mesh gradient background using canvas
  * Creates a modern, subtle animated background with moving gradient orbs
+ * Adapts color palette based on light/dark theme
  * Memoized to prevent unnecessary re-renders
  */
 const AnimatedBackground = memo(function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -67,8 +70,8 @@ const AnimatedBackground = memo(function AnimatedBackground() {
       points.forEach((point, i) => {
         const gradient = ctx.createRadialGradient(point.x, point.y, 0, point.x, point.y, point.radius);
 
-        // Different colors for each point (subtle blues, purples, and indigos)
-        const colors = [
+        // Dark mode: cool blues, purples, and indigos
+        const darkColors = [
           ['rgba(99, 102, 241, 0.12)', 'rgba(99, 102, 241, 0)'], // Indigo
           ['rgba(139, 92, 246, 0.12)', 'rgba(139, 92, 246, 0)'], // Purple
           ['rgba(59, 130, 246, 0.12)', 'rgba(59, 130, 246, 0)'], // Blue
@@ -76,6 +79,16 @@ const AnimatedBackground = memo(function AnimatedBackground() {
           ['rgba(79, 70, 229, 0.12)', 'rgba(79, 70, 229, 0)'], // Deep indigo
         ];
 
+        // Light mode: warm peach, coral, and amber tones
+        const lightColors = [
+          ['rgba(251, 146, 60, 0.08)', 'rgba(251, 146, 60, 0)'], // Peach (orange-400)
+          ['rgba(251, 113, 133, 0.08)', 'rgba(251, 113, 133, 0)'], // Coral (rose-400)
+          ['rgba(244, 114, 182, 0.08)', 'rgba(244, 114, 182, 0)'], // Soft pink (pink-400)
+          ['rgba(251, 191, 36, 0.08)', 'rgba(251, 191, 36, 0)'], // Amber (amber-400)
+          ['rgba(253, 186, 116, 0.08)', 'rgba(253, 186, 116, 0)'], // Light orange (orange-300)
+        ];
+
+        const colors = resolvedTheme === 'dark' ? darkColors : lightColors;
         const [color1, color2] = colors[i % colors.length];
         gradient.addColorStop(0, color1);
         gradient.addColorStop(1, color2);
@@ -93,14 +106,14 @@ const AnimatedBackground = memo(function AnimatedBackground() {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, []);
+  }, [resolvedTheme]);
 
   return (
     <canvas
       ref={canvasRef}
       className="pointer-events-none fixed inset-0 z-0"
       style={{
-        opacity: 0.7,
+        opacity: resolvedTheme === 'dark' ? 0.7 : 0.6,
       }}
     />
   );

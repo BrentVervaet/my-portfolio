@@ -6,7 +6,7 @@ export default function NotFound() {
       <div className="glass-subtle max-w-md rounded-3xl border border-white/20 p-8 text-center shadow-2xl dark:border-white/10">
         <div className="mb-6">
           <svg
-            className="mx-auto h-16 w-16 text-blue-500"
+            className="mx-auto h-16 w-16 text-orange-500 dark:text-blue-500"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

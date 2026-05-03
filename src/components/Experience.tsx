@@ -30,7 +30,7 @@ const Experience = memo(function Experience() {
       {/* Timeline */}
       <div className="relative px-2 sm:px-4">
         {/* Vertical line */}
-        <div className="absolute top-0 bottom-0 left-5 w-px bg-gradient-to-b from-blue-500/50 via-purple-500/50 to-transparent sm:left-6 md:left-1/2 dark:from-blue-400/30 dark:via-purple-400/30" />
+        <div className="absolute top-0 bottom-0 left-5 w-px bg-gradient-to-b from-orange-400/40 via-rose-400/40 to-transparent sm:left-6 md:left-1/2 dark:from-blue-400/30 dark:via-purple-400/30" />
 
         {/* Timeline items */}
         <div className="space-y-6 md:space-y-8">
@@ -49,7 +49,7 @@ const Experience = memo(function Experience() {
               >
                 {/* Timeline dot */}
                 <div className="absolute left-5 z-10 sm:left-6 md:left-1/2 md:-translate-x-1/2">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border-3 border-white bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg sm:h-12 sm:w-12 md:h-14 md:w-14 dark:border-slate-950">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border-3 border-white bg-gradient-to-br from-orange-400 to-rose-500 shadow-lg sm:h-12 sm:w-12 md:h-14 md:w-14 dark:border-slate-950 dark:from-blue-500 dark:to-purple-600">
                     {isWork ? (
                       <Briefcase className="h-4 w-4 text-white sm:h-5 sm:w-5 md:h-6 md:w-6" />
                     ) : (
@@ -89,7 +89,7 @@ const Experience = memo(function Experience() {
 
                         {/* Title & org */}
                         <div className="min-w-0 flex-1">
-                          <h3 className="text-sm font-bold text-zinc-900 transition-colors group-hover:text-blue-600 sm:text-base md:text-lg dark:text-white dark:group-hover:text-blue-400">
+                          <h3 className="text-sm font-bold text-zinc-900 transition-colors group-hover:text-orange-600 sm:text-base md:text-lg dark:text-white dark:group-hover:text-blue-400">
                             {item.organization}
                           </h3>
                           <p className="mt-0.5 text-xs font-medium text-zinc-600 sm:text-sm dark:text-zinc-300">
@@ -128,7 +128,7 @@ const Experience = memo(function Experience() {
                                 key={idx}
                                 className="flex items-start gap-1.5 text-xs text-zinc-600 sm:text-sm dark:text-zinc-300"
                               >
-                                <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-blue-500 sm:mt-1.5 sm:h-1.5 sm:w-1.5" />
+                                <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-orange-500 sm:mt-1.5 sm:h-1.5 sm:w-1.5 dark:bg-blue-500" />
                                 <span>{responsibility}</span>
                               </li>
                             ))}
@@ -157,7 +157,7 @@ const Experience = memo(function Experience() {
                             href={item.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="interactive inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:text-blue-700 sm:gap-1.5 dark:text-blue-400 dark:hover:text-blue-300"
+                            className="interactive inline-flex items-center gap-1 text-xs font-medium text-orange-600 hover:text-orange-700 sm:gap-1.5 dark:text-blue-400 dark:hover:text-blue-300"
                           >
                             Visit Website
                             <svg
