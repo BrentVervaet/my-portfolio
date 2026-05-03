@@ -26,7 +26,7 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
   }, [projects, sortOrder]);
 
   const toggleSortOrder = React.useCallback(() => {
-    setSortOrder(prev => prev === 'newest' ? 'oldest' : 'newest');
+    setSortOrder(prev => (prev === 'newest' ? 'oldest' : 'newest'));
   }, []);
 
   return (
@@ -90,7 +90,7 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
         {sortedProjects.map(project => (
           <div
             key={project.title}
-            className="group glass-subtle flex flex-col overflow-hidden rounded-3xl shadow-2xl transition-all interactive interactive-hover"
+            className="group glass-subtle interactive interactive-hover flex flex-col overflow-hidden rounded-3xl shadow-2xl transition-all"
           >
             {/*Images*/}
             <div className="p-4">
@@ -134,7 +134,7 @@ const Projects: React.FC<ProjectsProps> = React.memo(({ projects = defaultProjec
             </div>
 
             {/*Links*/}
-            <div className="surface-divider flex flex-wrap gap-3 px-6 pb-6 pt-4">
+            <div className="surface-divider flex flex-wrap gap-3 px-6 pt-4 pb-6">
               {project.link && (
                 <Button
                   asChild

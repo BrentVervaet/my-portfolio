@@ -1,14 +1,14 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 interface ProjectImageGalleryProps {
   images: string[];
   projectTitle?: string;
 }
 
-export default function ProjectImageGallery({ images, projectTitle = 'Project' }: ProjectImageGalleryProps) {
+export default function ProjectImageGallery({ images, projectTitle = 'Project' }: Readonly<ProjectImageGalleryProps>) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const openLightbox = (index: number) => setSelectedIndex(index);
@@ -50,10 +50,7 @@ export default function ProjectImageGallery({ images, projectTitle = 'Project' }
   // Single image - display it directly
   if (images.length === 1) {
     return (
-      <div
-        className="group relative h-64 w-full cursor-pointer overflow-hidden"
-        onClick={() => openLightbox(0)}
-      >
+      <div className="group relative h-64 w-full cursor-pointer overflow-hidden" onClick={() => openLightbox(0)}>
         <Image
           className="project-image object-contain"
           alt={`${projectTitle} screenshot`}
@@ -71,10 +68,7 @@ export default function ProjectImageGallery({ images, projectTitle = 'Project' }
     <>
       <div className="grid grid-cols-4 gap-3">
         {/* Main image - spans 4 columns */}
-        <div
-          className="group relative col-span-4 h-64 cursor-pointer overflow-hidden"
-          onClick={() => openLightbox(0)}
-        >
+        <div className="group relative col-span-4 h-64 cursor-pointer overflow-hidden" onClick={() => openLightbox(0)}>
           <Image
             className="project-image object-contain"
             alt={`${projectTitle} screenshot 1`}
@@ -144,10 +138,7 @@ export default function ProjectImageGallery({ images, projectTitle = 'Project' }
           )}
 
           {/* Image */}
-          <div
-            className="relative h-[80vh] w-[90vw] max-w-6xl"
-            onClick={e => e.stopPropagation()}
-          >
+          <div className="relative h-[80vh] w-[90vw] max-w-6xl" onClick={e => e.stopPropagation()}>
             <Image
               src={images[selectedIndex]}
               alt={`${projectTitle} screenshot ${selectedIndex + 1}`}

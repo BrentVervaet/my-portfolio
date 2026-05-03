@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
 
-  const project = defaultProjects.find(p => p.title.toLowerCase().replace(/\s+/g, '-') === slug);
+  const project = defaultProjects.find(p => p.title.toLowerCase().replaceAll(/\s+/g, '-') === slug);
 
   if (!project) {
     return {
@@ -55,17 +55,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 // Static params genereren (async)
 export async function generateStaticParams() {
-  return defaultProjects.map(project => ({
-    slug: project.title.toLowerCase().replace(/\s+/g, '-'),
-  }));
+  return defaultProjects.map(project => {
+    return {
+      slug: project.title.toLowerCase().replaceAll(/\s+/g, '-'),
+    };
+  });
 }
 
 // Page component async, params awaited
-export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ProjectPage({ params }: Readonly<{ params: Promise<{ slug: string }> }>) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
 
-  const project = defaultProjects.find(p => p.title.toLowerCase().replace(/\s+/g, '-') === slug);
+  const project = defaultProjects.find(p => p.title.toLowerCase().replaceAll(/\s+/g, '-') === slug);
 
   if (!project) {
     notFound();
@@ -110,10 +112,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <ProjectDetail project={enrichedProject} />
     </>
   );

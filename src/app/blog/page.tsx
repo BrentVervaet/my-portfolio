@@ -66,7 +66,7 @@ export default function BlogPage() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="glass-subtle card-spacing group block overflow-hidden rounded-3xl shadow-2xl interactive interactive-hover"
+              className="glass-subtle card-spacing group interactive interactive-hover block overflow-hidden rounded-3xl shadow-2xl"
             >
               <article>
                 <h2 className="mb-2 font-mono text-2xl font-bold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">

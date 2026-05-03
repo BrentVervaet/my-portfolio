@@ -142,11 +142,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                 <h2 className="mb-2 font-mono text-lg font-semibold">Technologies Used</h2>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, index) => (
-                    <Badge
-                      key={index}
-                      variant="outline"
-                      className="glass-subtle rounded-full px-3 py-0.5 text-xs"
-                    >
+                    <Badge key={index} variant="outline" className="glass-subtle rounded-full px-3 py-0.5 text-xs">
                       {tech}
                     </Badge>
                   ))}

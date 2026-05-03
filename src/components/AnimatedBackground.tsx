@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, memo } from 'react';
+import { memo, useEffect, useRef } from 'react';
 
 /**
  * Animated mesh gradient background using canvas
@@ -102,7 +102,6 @@ const AnimatedBackground = memo(function AnimatedBackground() {
       style={{
         opacity: 0.7,
       }}
-      aria-hidden="true"
     />
   );
 });

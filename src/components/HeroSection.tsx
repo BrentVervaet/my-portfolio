@@ -10,7 +10,10 @@ const HeroSection = () => (
     <div className="relative z-10 flex flex-col items-center gap-8 sm:gap-10 md:flex-row md:items-start md:gap-12 lg:gap-16">
       <AnimatedAvatar />
       <div className="flex flex-col items-center text-center md:items-start md:text-left">
-        <SectionHeading as="h1" className="mb-4 text-3xl font-bold leading-tight sm:mb-5 sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl xl:text-7xl">
+        <SectionHeading
+          as="h1"
+          className="mb-4 text-3xl leading-tight font-bold sm:mb-5 sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl xl:text-7xl"
+        >
           Hi, I&apos;m Brent <WaveEmoji />
         </SectionHeading>
         <p className="mb-6 max-w-2xl text-base leading-relaxed text-zinc-600 sm:mb-7 sm:text-lg md:mb-8 md:text-xl dark:text-zinc-300">

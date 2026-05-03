@@ -1,7 +1,7 @@
 'use client';
 import { Section, SectionHeading } from '@/components/Section';
 import { Badge } from '@/components/ui/badge';
-import { education, workExperience, type ExperienceItem } from '@/data/experience';
+import { education, workExperience } from '@/data/experience';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Briefcase, Calendar, GraduationCap, MapPin } from 'lucide-react';
@@ -13,8 +13,8 @@ const Experience = memo(function Experience() {
     return [...workExperience, ...education].sort((a, b) => {
       // Extract year from period string (assumes format "YYYY - Present" or "YYYY - YYYY")
       const getStartYear = (period: string) => {
-        const match = period.match(/(\d{4})/);
-        return match ? parseInt(match[1]) : 0;
+        const match = new RegExp(/(\d{4})/).exec(period);
+        return match ? Number.parseInt(match[1]) : 0;
       };
       return getStartYear(b.period) - getStartYear(a.period);
     });
@@ -30,7 +30,7 @@ const Experience = memo(function Experience() {
       {/* Timeline */}
       <div className="relative px-2 sm:px-4">
         {/* Vertical line */}
-        <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/50 via-purple-500/50 to-transparent sm:left-6 md:left-1/2 dark:from-blue-400/30 dark:via-purple-400/30" />
+        <div className="absolute top-0 bottom-0 left-5 w-px bg-gradient-to-b from-blue-500/50 via-purple-500/50 to-transparent sm:left-6 md:left-1/2 dark:from-blue-400/30 dark:via-purple-400/30" />
 
         {/* Timeline items */}
         <div className="space-y-6 md:space-y-8">
@@ -59,14 +59,16 @@ const Experience = memo(function Experience() {
                 </div>
 
                 {/* Content card */}
-                <div className={`ml-16 w-full sm:ml-20 md:ml-0 md:w-[calc(50%-3.5rem)] ${isLeft ? 'md:pr-10 lg:pr-12' : 'md:pl-10 lg:pl-12'}`}>
+                <div
+                  className={`ml-16 w-full sm:ml-20 md:ml-0 md:w-[calc(50%-3.5rem)] ${isLeft ? 'md:pr-10 lg:pr-12' : 'md:pl-10 lg:pl-12'}`}
+                >
                   <motion.div
                     whileHover={{ scale: 1.01 }}
                     transition={{ duration: 0.2 }}
                     className="glass group overflow-hidden rounded-xl shadow-xl md:rounded-2xl"
                   >
                     {/* Header */}
-                    <div className="p-3 border-b border-white/10 sm:p-4 md:p-5 dark:border-white/5">
+                    <div className="border-b border-white/10 p-3 sm:p-4 md:p-5 dark:border-white/5">
                       <div className="mb-2 flex items-start gap-2.5 sm:mb-3 sm:gap-3">
                         {/* Logo */}
                         <motion.div
@@ -90,7 +92,9 @@ const Experience = memo(function Experience() {
                           <h3 className="text-sm font-bold text-zinc-900 transition-colors group-hover:text-blue-600 sm:text-base md:text-lg dark:text-white dark:group-hover:text-blue-400">
                             {item.organization}
                           </h3>
-                          <p className="mt-0.5 text-xs font-medium text-zinc-600 sm:text-sm dark:text-zinc-300">{item.title}</p>
+                          <p className="mt-0.5 text-xs font-medium text-zinc-600 sm:text-sm dark:text-zinc-300">
+                            {item.title}
+                          </p>
                         </div>
                       </div>
 
@@ -122,7 +126,7 @@ const Experience = memo(function Experience() {
                             {item.responsibilities.map((responsibility, idx) => (
                               <li
                                 key={idx}
-                                className="flex items-start gap-1.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300"
+                                className="flex items-start gap-1.5 text-xs text-zinc-600 sm:text-sm dark:text-zinc-300"
                               >
                                 <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-blue-500 sm:mt-1.5 sm:h-1.5 sm:w-1.5" />
                                 <span>{responsibility}</span>
@@ -138,7 +142,7 @@ const Experience = memo(function Experience() {
                           {item.skills.map(skill => (
                             <Badge
                               key={skill}
-                              className="rounded-full border border-white/20 bg-white/10 px-2 py-0.5 text-xs font-medium text-zinc-900 interactive dark:border-white/10 dark:bg-white/5 dark:text-zinc-100"
+                              className="interactive rounded-full border border-white/20 bg-white/10 px-2 py-0.5 text-xs font-medium text-zinc-900 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100"
                             >
                               {skill}
                             </Badge>
@@ -153,10 +157,15 @@ const Experience = memo(function Experience() {
                             href={item.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 interactive hover:text-blue-700 sm:gap-1.5 dark:text-blue-400 dark:hover:text-blue-300"
+                            className="interactive inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:text-blue-700 sm:gap-1.5 dark:text-blue-400 dark:hover:text-blue-300"
                           >
                             Visit Website
-                            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg
+                              className="h-3 w-3 sm:h-3.5 sm:w-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
                               <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"

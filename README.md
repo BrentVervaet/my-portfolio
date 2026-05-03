@@ -1,6 +1,7 @@
 # Brent Vervaet - Portfolio
 
-My personal portfolio website built with Next.js 16, showcasing my projects, technical blog, and experience as a Full-Stack Developer.
+My personal portfolio website built with Next.js 16, showcasing my projects, technical blog, and experience as a
+Full-Stack Developer.
 
 🌐 **Live Site**: [brentvervaet.dev](https://brentvervaet.dev)
 
@@ -32,7 +33,7 @@ My personal portfolio website built with Next.js 16, showcasing my projects, tec
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - pnpm (recommended) or npm
 
 ### Setup
@@ -149,12 +150,14 @@ vercel --prod
 ## Performance
 
 **Lighthouse Scores:**
+
 - Performance: 98/100
 - Accessibility: 100/100
 - Best Practices: 100/100
 - SEO: 100/100
 
 **Bundle Size:**
+
 - Static: 1.4MB
 - Server: 15MB
 - Client JS: ~45KB (initial)
@@ -162,6 +165,7 @@ vercel --prod
 ## Analytics
 
 Analytics are automatically configured via Vercel:
+
 - **Vercel Analytics**: Page views, custom events
 - **Speed Insights**: Core Web Vitals, RUM
 

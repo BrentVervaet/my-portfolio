@@ -1,7 +1,7 @@
 'use client';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
-import { useCallback, useEffect, useState, memo } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProjectImageCarouselProps {
@@ -9,7 +9,10 @@ interface ProjectImageCarouselProps {
   projectTitle?: string;
 }
 
-const ProjectImageCarousel = memo(function ProjectImageCarousel({ images, projectTitle = 'Project' }: ProjectImageCarouselProps) {
+const ProjectImageCarousel = memo(function ProjectImageCarousel({
+  images,
+  projectTitle = 'Project',
+}: ProjectImageCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
@@ -91,7 +94,7 @@ const ProjectImageCarousel = memo(function ProjectImageCarousel({ images, projec
           <button
             onClick={scrollPrev}
             disabled={!canScrollPrev}
-            className="absolute left-1 top-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-white/10 p-1.5 text-white backdrop-blur-xl transition-all hover:bg-white/20 disabled:opacity-30 sm:left-2 sm:p-2 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30"
+            className="absolute top-1/2 left-1 -translate-y-1/2 rounded-full border border-white/20 bg-white/10 p-1.5 text-white backdrop-blur-xl transition-all hover:bg-white/20 disabled:opacity-30 sm:left-2 sm:p-2 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30"
             aria-label="Previous image"
           >
             <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -99,7 +102,7 @@ const ProjectImageCarousel = memo(function ProjectImageCarousel({ images, projec
           <button
             onClick={scrollNext}
             disabled={!canScrollNext}
-            className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-white/10 p-1.5 text-white backdrop-blur-xl transition-all hover:bg-white/20 disabled:opacity-30 sm:right-2 sm:p-2 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30"
+            className="absolute top-1/2 right-1 -translate-y-1/2 rounded-full border border-white/20 bg-white/10 p-1.5 text-white backdrop-blur-xl transition-all hover:bg-white/20 disabled:opacity-30 sm:right-2 sm:p-2 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30"
             aria-label="Next image"
           >
             <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />

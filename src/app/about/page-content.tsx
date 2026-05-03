@@ -38,8 +38,7 @@ export function AboutContent() {
 
       <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
         I also enjoy playing video games or reading a good book to unwind. And when the weather&apos;s nice, you might
-        find me on the golf course 🏌️‍♂️trying to convince myself that my swing is getting better (spoiler: it&apos;s
-        not).
+        find me on the golf course 🏌️‍♂️trying to convince myself that my swing is getting better (spoiler: it&apos;s not).
       </p>
 
       <div className="surface-divider pt-6">
