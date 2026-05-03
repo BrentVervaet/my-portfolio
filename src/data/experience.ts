@@ -25,18 +25,6 @@ export const education: ExperienceItem[] = [
     website: 'https://www.hogent.be/opleidingen/bachelors/toegepaste-informatica/',
     type: 'education',
   },
-  {
-    id: 2,
-    title: 'ASO Modern Languages and Sciences',
-    organization: 'Sint-Lodewijkscollege',
-    period: '2012 - 2018',
-    description:
-      'Secondary education with a focus on modern languages, mathematics, and sciences, providing a strong foundation for higher education.',
-    location: 'Bruges, Belgium',
-    logo: '/images/home/experience/stlod.webp',
-    website: 'https://www.sintlodewijkscollege.be/',
-    type: 'education',
-  },
 ];
 
 export const workExperience: ExperienceItem[] = [
