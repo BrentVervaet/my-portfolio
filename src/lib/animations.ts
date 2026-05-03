@@ -17,8 +17,8 @@ export const EASE = 'easeOut' as const;
 // Viewport standard config
 export const VIEWPORT_CONFIG = {
   once: true,
-  amount: 0.2,
-  margin: '0px 0px -100px 0px',
+  amount: 0.1,
+  margin: '0px 0px -200px 0px',
 } as const;
 
 /**
