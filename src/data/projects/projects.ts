@@ -20,7 +20,7 @@ export const defaultProjects: Project[] = [
     features: ['Coming soon'],
     challenges: ['Coming soon'],
     technologies: ['Odoo', 'Python'],
-    images: [],
+    images: ['/images/Projects/Endoo/endoo.webp'],
     date: new Date('2026-02-22'),
   },
 
