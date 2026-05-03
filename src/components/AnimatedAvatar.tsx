@@ -1,5 +1,6 @@
 'use client';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { transitionFast } from '@/lib/animations';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -7,7 +8,7 @@ export function AnimatedAvatar() {
   return (
     <motion.div
       whileHover={{ rotate: -10, scale: 1.1 }}
-      transition={{ duration: 0.2, ease: 'easeOut' }}
+      transition={transitionFast}
       className="glass-subtle rounded-full p-2 shadow-2xl will-change-transform"
     >
       <Link

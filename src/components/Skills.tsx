@@ -1,6 +1,6 @@
 'use client';
 import { Section, SectionHeading } from '@/components/Section';
-import { scaleOnHoverLarge } from '@/lib/animations';
+import { transitionFast } from '@/lib/animations';
 import { type Skill, skills as defaultSkills } from '@/data/skills';
 import { motion } from 'framer-motion';
 import React, { memo } from 'react';
@@ -23,16 +23,18 @@ const Skills: React.FC<SkillsProps> = memo(({ skills = defaultSkills }) => {
             const Icon = skill.icon;
             return (
               <motion.a
-                {...scaleOnHoverLarge}
                 key={`${skill.name}-${index}`}
                 href={skill.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group interactive flex flex-col items-center justify-center rounded-2xl p-4 hover:bg-white/10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent focus:outline-none dark:hover:bg-white/5"
+                whileHover={{ scale: 1.08, y: -4 }}
+                whileTap={{ scale: 0.98 }}
+                transition={transitionFast}
+                className="group flex flex-col items-center justify-center rounded-2xl p-4 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent focus:outline-none"
                 title={`Learn more about ${skill.name}`}
                 aria-label={`Learn more about ${skill.name} - opens in new tab`}
               >
-                <div className="glass-subtle interactive mb-3 rounded-xl p-4 text-4xl shadow-lg group-hover:shadow-xl md:text-5xl">
+                <div className="glass-subtle mb-3 rounded-xl p-4 text-4xl shadow-lg group-hover:shadow-xl md:text-5xl">
                   <Icon aria-hidden="true" />
                 </div>
                 <span className="text-center text-sm font-medium text-zinc-700 group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-zinc-100">

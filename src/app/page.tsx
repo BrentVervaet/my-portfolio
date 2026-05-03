@@ -3,7 +3,7 @@ import { AnimatedSection } from '@/components/AnimatedSection';
 import Experience from '@/components/Experience';
 import HeroSection from '@/components/HeroSection';
 import Skills from '@/components/Skills';
-import { fadeInUp, fadeInUpScroll } from '@/lib/animations';
+import { fadeInUp, fadeInUpScroll, transitionNormal } from '@/lib/animations';
 import dynamic from 'next/dynamic';
 
 // Lazy load the Projects component since it contains many images
@@ -22,7 +22,7 @@ const Projects = dynamic(() => import('@/components/projects/Projects'), {
 export default function Home() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-8">
-      <AnimatedSection {...fadeInUp} transition={{ duration: 0.5, ease: 'easeOut' }}>
+      <AnimatedSection {...fadeInUp} transition={transitionNormal}>
         <HeroSection />
       </AnimatedSection>
 
@@ -34,7 +34,7 @@ export default function Home() {
         <Skills />
       </AnimatedSection>
 
-      <AnimatedSection {...fadeInUpScroll} viewport={{ once: true, amount: 0, margin: '0px 0px -100px 0px' }}>
+      <AnimatedSection {...fadeInUpScroll}>
         <Projects />
       </AnimatedSection>
     </main>

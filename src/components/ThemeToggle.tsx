@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { scaleOnHover } from '@/lib/animations';
 import { motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
@@ -26,7 +27,7 @@ export default function ThemeToggle() {
   const isDark = resolvedTheme === 'dark';
 
   return (
-    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+    <motion.div {...scaleOnHover}>
       <Button
         variant="ghost"
         size="icon"

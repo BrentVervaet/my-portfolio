@@ -2,6 +2,7 @@
 import { Section, SectionHeading } from '@/components/Section';
 import { Badge } from '@/components/ui/badge';
 import { education, workExperience } from '@/data/experience';
+import { VIEWPORT_CONFIG, transitionFast, transitionNormal } from '@/lib/animations';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Briefcase, Calendar, GraduationCap, MapPin } from 'lucide-react';
@@ -43,8 +44,8 @@ const Experience = memo(function Experience() {
                 key={`${item.type}-${item.id}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                viewport={VIEWPORT_CONFIG}
+                transition={{ ...transitionNormal, delay: index * 0.05 }}
                 className={`relative flex items-center ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}
               >
                 {/* Timeline dot */}
@@ -63,8 +64,8 @@ const Experience = memo(function Experience() {
                   className={`ml-16 w-full sm:ml-20 md:ml-0 md:w-[calc(50%-3.5rem)] ${isLeft ? 'md:pr-10 lg:pr-12' : 'md:pl-10 lg:pl-12'}`}
                 >
                   <motion.div
-                    whileHover={{ scale: 1.01 }}
-                    transition={{ duration: 0.2 }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={transitionFast}
                     className="glass group overflow-hidden rounded-xl shadow-xl md:rounded-2xl"
                   >
                     {/* Header */}
@@ -73,7 +74,7 @@ const Experience = memo(function Experience() {
                         {/* Logo */}
                         <motion.div
                           whileHover={{ scale: 1.05, rotate: 3 }}
-                          transition={{ duration: 0.2 }}
+                          transition={transitionFast}
                           className="shrink-0"
                         >
                           <div className="relative h-10 w-10 overflow-hidden rounded-lg border-2 border-white/30 bg-white shadow-md transition-all group-hover:shadow-lg sm:h-12 sm:w-12 md:h-14 md:w-14 md:rounded-xl dark:border-white/20 dark:bg-white/10">

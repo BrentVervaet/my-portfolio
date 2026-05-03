@@ -2,18 +2,14 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
 import { usePathname } from 'next/navigation';
+import { fadeIn } from '@/lib/animations';
 
 export default function PageTransition({ children }: Readonly<{ children: React.ReactNode }>) {
   const pathname = usePathname();
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
-        key={pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: 'easeInOut' }}
-      >
+      <motion.div key={pathname} {...fadeIn}>
         {children}
       </motion.div>
     </AnimatePresence>

@@ -71,7 +71,7 @@ const SocialLinks = memo(function SocialLinks({
           rel="noopener noreferrer"
           aria-label={link.ariaLabel}
           className={`transition-colors ${link.hoverColor}`}
-          whileTap={{ scale: 0.9 }}
+          whileTap={{ scale: 0.95 }}
         >
           {link.icon}
         </motion.a>
@@ -85,8 +85,8 @@ const SocialLinks = memo(function SocialLinks({
         >
           <motion.a
             whileTap={{ rotate: -2, scale: 0.95 }}
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.1 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
             href="/CV_Brent_Vervaet.pdf"
             download
           >

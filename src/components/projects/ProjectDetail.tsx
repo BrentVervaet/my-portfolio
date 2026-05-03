@@ -2,6 +2,7 @@
 import ProjectImageCarousel from '@/components/projects/ProjectImageCarousel';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { scaleOnHover, transitionNormal, VIEWPORT_CONFIG } from '@/lib/animations';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
@@ -28,7 +29,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={transitionNormal}
           className="mb-6 flex items-center"
         >
           <Link href="/#projects" className="mr-4 flex items-center text-sm text-zinc-500 hover:text-zinc-900">
@@ -55,7 +56,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ ...transitionNormal, delay: 0.1 }}
             className="border-b border-white/10 p-4"
           >
             <ProjectImageCarousel images={project.images} projectTitle={project.title} />
@@ -66,7 +67,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ ...transitionNormal, delay: 0.2 }}
               className="mb-6"
             >
               <div className="mb-2 flex items-start justify-between">
@@ -86,7 +87,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ ...transitionNormal, delay: 0.4 }}
                 className="glass-subtle mb-6 rounded-xl p-4"
               >
                 <h2 className="mb-2 font-mono text-lg font-semibold">About This Project</h2>
@@ -99,8 +100,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ amount: 0.2 }}
-                transition={{ duration: 0.6 }}
+                viewport={VIEWPORT_CONFIG}
+                transition={transitionNormal}
                 className="glass-subtle mb-6 rounded-xl p-4"
               >
                 <h2 className="mb-2 font-mono text-lg font-semibold">Key Features</h2>
@@ -117,8 +118,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ amount: 0.2 }}
-                transition={{ duration: 0.6 }}
+                viewport={VIEWPORT_CONFIG}
+                transition={transitionNormal}
                 className="glass-subtle mb-6 rounded-xl p-4"
               >
                 <h2 className="mb-2 font-mono text-lg font-semibold">Challenges & Solutions</h2>
@@ -135,8 +136,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ amount: 0.2 }}
-                transition={{ duration: 0.6 }}
+                viewport={VIEWPORT_CONFIG}
+                transition={transitionNormal}
                 className="glass-subtle mb-6 rounded-xl p-4"
               >
                 <h2 className="mb-2 font-mono text-lg font-semibold">Technologies Used</h2>
@@ -154,11 +155,11 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={transitionNormal}
               className="mt-8 flex flex-wrap gap-3"
             >
               {project.link && (
-                <motion.div whileTap={{ scale: 0.95 }} whileHover={{ scale: 1.05 }}>
+                <motion.div {...scaleOnHover}>
                   <Button
                     asChild
                     variant="outline"
@@ -188,7 +189,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
               )}
 
               {project.sourceCodeLink && (
-                <motion.div whileTap={{ scale: 0.95 }} whileHover={{ scale: 1.05 }}>
+                <motion.div {...scaleOnHover}>
                   <Button
                     asChild
                     variant="outline"
