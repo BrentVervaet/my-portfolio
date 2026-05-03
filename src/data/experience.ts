@@ -17,7 +17,7 @@ export const education: ExperienceItem[] = [
     id: 1,
     title: 'Bachelor of Science in Applied Informatics',
     organization: 'HOGENT',
-    period: '2022 - Present',
+    period: '2022 - 2026',
     description:
       'Comprehensive program focusing on web and mobile enterprise development, software engineering principles, and modern development practices.',
     location: 'Ghent, Belgium',
@@ -41,7 +41,7 @@ export const workExperience: ExperienceItem[] = [
     skills: ['Python', 'Odoo'],
     location: 'Ghent, Belgium',
     logo: '/images/home/experience/endoo.webp',
-    website: 'https://www.endoo.com',
+    website: 'https://www.endoo.be',
     type: 'work',
   },
 ];
