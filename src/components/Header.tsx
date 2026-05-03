@@ -88,18 +88,6 @@ export default function Header() {
             <div className="mt-16 flex flex-col items-center space-y-10 font-mono text-lg">
               <motion.div {...scaleOnHover}>
                 <Link
-                  href="/#projects"
-                  onClick={e => {
-                    handleAnchorClick(e, '#projects');
-                    handleLinkClick();
-                  }}
-                  className="rounded-full border border-white/20 bg-white/10 px-6 py-3 shadow-lg backdrop-blur-md transition-all hover:bg-white/20 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30"
-                >
-                  Projects
-                </Link>
-              </motion.div>
-              <motion.div {...scaleOnHover}>
-                <Link
                   href="/blog"
                   onClick={handleLinkClick}
                   className="rounded-full border border-white/20 bg-white/10 px-6 py-3 shadow-lg backdrop-blur-md transition-all hover:bg-white/20 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30"
@@ -128,22 +116,6 @@ export default function Header() {
 
         {/* Desktop navigation */}
         <div className="hidden items-center space-x-6 font-mono text-base md:flex">
-          <motion.div
-            initial={{ opacity: 0, x: 300 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: DURATION.SLOW, ease: EASE }}
-          >
-            <motion.div {...scaleOnHover}>
-              <Link
-                href="/#projects"
-                onClick={e => handleAnchorClick(e, '#projects')}
-                className="rounded-full border border-white/20 bg-white/10 px-4 py-2 shadow-lg backdrop-blur-md transition-all hover:bg-white/20 hover:text-orange-600 dark:border-white/10 dark:bg-black/20 dark:hover:bg-black/30 dark:hover:text-blue-400"
-              >
-                Projects
-              </Link>
-            </motion.div>
-          </motion.div>
-
           <motion.div
             initial={{ opacity: 0, x: 240 }}
             animate={{ opacity: 1, x: 0 }}
