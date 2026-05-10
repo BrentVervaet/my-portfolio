@@ -1,6 +1,6 @@
 ---
 title: "Building a Modern Portfolio with Next.js 16: Server Components, Performance, and Best Practices"
-date: "2026-04-23"
+date: "2025-10-1"
 description: "A deep dive into rebuilding my portfolio with Next.js 16, React Server Components, and modern web development patterns—complete with performance optimizations and lessons learned."
 tags: ["Next.js", "React", "TypeScript", "Performance", "Web Development"]
 ---
@@ -19,7 +19,7 @@ I could have gone with any framework (or no framework at all), but Next.js 16 of
 ✅ **Static Generation** - Blazing-fast page loads  
 ✅ **Built-in Optimization** - Image optimization, font loading, etc.  
 ✅ **TypeScript** - Type safety throughout  
-✅ **Great DX** - Fast refresh, great error messages  
+✅ **Great DX** - Fast refresh, great error messages
 
 ## Architecture Decisions
 
@@ -187,8 +187,8 @@ import { Calendar, Clock, Github } from 'lucide-react';
 
 Configured in `next.config.ts`:
 ```typescript
-experimental: {
-  optimizePackageImports: ['framer-motion', 'lucide-react'],
+{
+  ['framer-motion', 'lucide-react'],
 }
 ```
 
