@@ -1,9 +1,9 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/portfolio" # location of package.json
+    directory: "/" # Root directory with package.json
     schedule:
-      interval: "monthly" # or "weekly" or "daily"
+      interval: "weekly" # Weekly updates for security patches
     open-pull-requests-limit: 5
     commit-message:
       prefix: "chore"
