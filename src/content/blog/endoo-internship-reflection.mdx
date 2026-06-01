@@ -7,7 +7,7 @@ tags: ["Internship", "Odoo", "Python", "AI", "Full-Stack"]
 
 # My Last Day at Endoo: Reflecting on 14 Weeks of Building Manual.to for Odoo
 
-**May 21st, 2026** - Today marks the end of my 14-week internship journey at Endoo by Endare, and as I delivered my final presentation this morning, I couldn't help but reflect on how much I've grown both technically and professionally.
+**May 21st, 2026** – Today marks the end of my 14-week internship journey at Endoo by Endare, and as I delivered my final presentation this morning, I couldn't help but reflect on how much I've grown both technically and professionally.
 
 ## The Mission
 
@@ -17,7 +17,7 @@ Fourteen weeks later, I'm proud to say I delivered a working MVP that successful
 
 ## The Journey
 
-### Weeks 1-2: Foundation and Analysis
+### Weeks 1–2: Foundation and Analysis
 
 The first two weeks were all about getting my bearings. I:
 - Set up my development environment (Claude, Odoo.sh, PyCharm, GitKraken)
@@ -27,27 +27,27 @@ The first two weeks were all about getting my bearings. I:
 
 Coming from school projects, I quickly learned that **real-world business analysis is significantly more complex than textbook examples**. Defining actors, stakeholders, and customer journeys for an actual client was eye-opening.
 
-### Weeks 3-6: Core Development
+### Weeks 3–6: Core Development
 
 From week 3 onwards, I was deep in development:
 
 **✅ Hello World Module** - Got my first Odoo module running  
-**✅ CRUD Operations** - Create, read, update, delete for manuals and collections  
-**✅ Archive & Delete Features** - Proper data lifecycle management  
-**✅ Collections System** - Group related manuals together  
+**✅ CRUD Operations** – Create, read, update, delete for manuals and collections
+**✅ Archive & Delete Features** – Proper data lifecycle management
+**✅ Collections System** – Group related manuals together
 **✅ Instructions with Media** - Steps that support both images and videos
 
 One major challenge: **implementing steps/chunks was harder than expected**. The data structure needed to support ordering, media uploads, and dynamic editing—all while maintaining Odoo's conventions.
 
-### Weeks 7-9: Portal and UX
+### Weeks 7–9: Portal and UX
 
 This phase focused on the end-user experience:
 
 **✅ Responsive Web Portal** - Public-facing manual viewer  
-**✅ Built-in Video Trimmer** - Edit videos directly in the module  
-**✅ QR Code Generation** - Easy access to manuals via QR codes  
-**✅ Progress Tracking** - Visual progress bars for multi-step manuals  
-**✅ Mobile Optimization** - Fixed native video player issues on real devices
+**✅ Built-in Video Trimmer** – Edit videos directly in the module
+**✅ QR Code Generation** – Easy access to manuals via QR codes
+**✅ Progress Tracking** – Visual progress bars for multistep manuals
+**✅ Mobile Optimization** – Fixed native video player issues on real devices
 
 The video editor was particularly tricky. I initially tried to save trimmed versions, but ended up building a custom web player that respects start/end timestamps without re-encoding videos.
 
@@ -56,10 +56,10 @@ The video editor was particularly tricky. I initially tried to save trimmed vers
 This is where things got exciting:
 
 **✅ AI-Powered Translations** - Using AWS Bedrock (Claude) for batch translation  
-**✅ Terminology Consistency** - Custom terminology database for brand-specific terms  
+**✅ Terminology Consistency** – Custom terminology database for brand-specific terms
 **✅ Text-to-Speech (TTS)** - Native Web Speech API for free tier  
-**✅ AWS Polly Integration** - Premium TTS with natural-sounding voices  
-**✅ ISO-639-1 Language Support** - Proper language code handling
+**✅ AWS Polly Integration** – Premium TTS with natural-sounding voices
+**✅ ISO-639-1 Language Support** – Proper language code handling
 
 Initially, translations were slow. After discussions with Johan (senior dev), we optimized the approach:
 
@@ -69,18 +69,18 @@ Initially, translations were slow. After discussions with Johan (senior dev), we
 # Cache translations to avoid redundant API calls
 ```
 
-**Result:** Translation time dropped from ~30s to ~5s per manual.
+**Result:** Translation time dropped from ~30s to ~5 s per manual.
 
-### Weeks 13-14: Polish and Integration
+### Weeks 13–14: Polish and Integration
 
 Final stretch:
 
-**✅ Categories System** - Using Odoo's native tag system  
-**✅ Sales Module Integration** - Link manuals directly to products and sales orders  
-**✅ Arrow Key Navigation** - Better UX for step navigation  
-**✅ Localization (i18n)** - All UI strings properly translated  
-**✅ Client Demo** - Presented to Buro International (the actual client)  
-**✅ Final Presentation** - Showed the complete MVP
+**✅ Categories System** – Using Odoo's native tag system
+**✅ Sales Module Integration** – Link manuals directly to products and sales orders
+**✅ Arrow Key Navigation** – Better UX for step navigation
+**✅ Localization (i18n)** – All UI strings properly translated
+**✅ Client Demo** – Presented to Buro International (the actual client)
+**✅ Final Presentation** – Showed the complete MVP
 
 The client meeting on **May 19th** was a highlight. Jeroen from Buro International provided valuable feedback that I immediately translated into new user stories and bug fixes.
 
@@ -89,22 +89,22 @@ The client meeting on **May 19th** was a highlight. Jeroen from Buro Internation
 The final MVP includes:
 
 ### For Administrators (Backend)
-- **Manual Management** - Full CRUD with rich text editor
+- **Manual Management** – Full CRUD with rich text editor
 - **Step Editor** - Add/reorder/delete steps with media
 - **Video Trimmer** - Built-in video editing
-- **Collections** - Organize manuals into groups
+- **Collections** – Organize manuals into groups
 - **Categories** - Tag system for filtering
 - **AI Translations** - One-click translation to 20+ languages
-- **TTS Generation** - Audio narration for accessibility
-- **Sales Integration** - Link manuals to products/orders
+- **TTS Generation** – Audio narration for accessibility
+- **Sales Integration** – Link manuals to products/orders
 - **QR Code Generation** - Print-friendly access codes
 
 ### For End Users (Portal)
-- **Responsive Web Viewer** - Works on desktop and mobile
-- **Progress Tracking** - Visual progress through manuals
-- **Multilingual Support** - Switch languages on the fly
-- **Audio Playback** - Listen instead of reading
-- **Step Navigation** - Arrow keys, swipe gestures
+- **Responsive Web Viewer** – Works on desktop and mobile
+- **Progress Tracking** – Visual progress through manuals
+- **Multilingual Support** – Switch languages on the fly
+- **Audio Playback** – Listen instead of reading
+- **Step Navigation** – Arrow keys, swipe gestures
 - **Mobile-Optimized** - Native video player support
 
 ## Technical Stack
@@ -279,7 +279,7 @@ Backlog → Specifications → Development → UAT → Production
 One of the highlights was **presenting to Buro International** (the actual client paying for this):
 
 **Meeting on May 19th:**
-- Showed live demo of the MVP
+- Showed a live demo of the MVP
 - Gathered real-time feedback
 - Answered questions about features and limitations
 - Discussed future roadmap
@@ -289,7 +289,7 @@ One of the highlights was **presenting to Buro International** (the actual clien
 - ✅ Video trimmer was "exactly what we needed"
 - ✅ Translations were impressive
 - 🔄 Requested minor UX adjustments (navigation, icons)
-- 🔄 Asked for category filtering in portal
+- 🔄 Asked for category filtering in the portal
 
 I immediately translated their feedback into new user stories and bug tickets. **This is what real software development looks like**—not building in a vacuum, but iterating based on actual user needs.
 
@@ -298,15 +298,15 @@ I immediately translated their feedback into new user stories and bug tickets. *
 Despite working solo on my project, I never felt alone:
 
 **Daily Structure:**
-- **9:30 AM** - Team stand-up (entire Odoo team)
+- **9:30 AM** – Team stand-up (entire Odoo team)
 - **Tuesdays** - 1-on-1 with Thomas (my mentor)
-- **Monthly** - Team meetings (project demos, retrospectives)
+- **Monthly** – Team meetings (project demos, retrospectives)
 
 **Team Culture:**
-- **Open office layout** - Help always nearby
-- **Friendly and welcoming** - Everyone willing to assist
-- **Transparent communication** - No question was "too basic"
-- **Q1 Team Building** - Fun event in week 3
+- **Open office layout** – Help always nearby
+- **Friendly and welcoming** – Everyone willing to help
+- **Transparent communication** – No question was "too basic"
+- **Q1 Team Building** – Fun event in week 3
 
 **Mentorship:**
 - Thomas (mentor) gave consistent feedback: "You're on schedule, good progress"
@@ -375,14 +375,14 @@ After: Deployed to staging 30+ times, production 5+ times.
 ### Build Metrics
 
 **Initial Load:**
-- Backend response time: ~200ms
-- Portal page load: ~1.2s (including images)
-- Video playback start: ~500ms
+- Backend response time: ~200 ms
+- Portal page load: ~1.2 s (including images)
+- Video playback start: ~500 ms
 
 **Translation Performance:**
 - Before optimization: ~30s per manual
-- After optimization: ~5s per manual
-- TTS generation: ~3s per step (Polly)
+- After optimization: ~5 s per manual
+- TTS generation: ~3 s per step (Polly)
 
 **Scaling:**
 - Tested with 100+ manuals
@@ -520,7 +520,7 @@ I arrived as a student; I leave as a developer.
 
 ---
 
-**Internship Period:** February 16 - May 21, 2026  
+**Internship Period:** February 16–May 21, 2026,
 **Company:** Endoo by Endare  
 **Project:** Manual.to for Odoo (MVP)  
 **Role:** Solo Developer & Analyst

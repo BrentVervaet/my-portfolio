@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [lastScrollY, setLastScrollY] = useState(() => (typeof window !== 'undefined' ? window.scrollY : 0));
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
@@ -25,11 +25,11 @@ export default function Header() {
       if (currentScrollY < 10) {
         // Always show header at the top
         setIsVisible(true);
-      } else if (currentScrollY > lastScrollY) {
-        // Scrolling down
+      } else if (currentScrollY > lastScrollY + 5) {
+        // Scrolling down (with 5px threshold to avoid jitter)
         setIsVisible(false);
-      } else {
-        // Scrolling up
+      } else if (currentScrollY < lastScrollY - 5) {
+        // Scrolling up (with 5px threshold)
         setIsVisible(true);
       }
 
