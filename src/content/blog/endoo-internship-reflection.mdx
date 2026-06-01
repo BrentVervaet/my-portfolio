@@ -1,0 +1,531 @@
+---
+title: "My Last Day at Endoo: Reflecting on 14 Weeks of Building Manual.to for Odoo"
+date: "2026-05-21"
+description: "A comprehensive reflection on my 14-week internship at Endoo by Endare, where I built a complete Odoo module to replace Manual.to—covering technical growth, challenges, and lessons learned."
+tags: ["Internship", "Odoo", "Python", "AWS", "AI", "Full-Stack"]
+---
+
+# My Last Day at Endoo: Reflecting on 14 Weeks of Building Manual.to for Odoo
+
+**May 21st, 2026** - Today marks the end of my 14-week internship journey at Endoo by Endare, and as I delivered my final presentation this morning, I couldn't help but reflect on how much I've grown both technically and professionally.
+
+## The Mission
+
+When I started in mid-February, I was tasked with a solo project: building **Manual.to for Odoo**. The goal? Replace an expensive SaaS platform with a native Odoo module that would allow companies to create visual step-by-step manuals with text and video—all while integrating seamlessly with existing Odoo workflows like sales and product management.
+
+Fourteen weeks later, I'm proud to say I delivered a working MVP that successfully replaces Manual.to.
+
+## The Journey
+
+### Weeks 1-2: Foundation and Analysis
+
+The first two weeks were all about getting my bearings. I:
+- Set up my development environment (Claude, Odoo.sh, PyCharm, GitKraken)
+- Dove deep into Odoo documentation and tutorials
+- Conducted a full requirements analysis (FR, NFR, BPMN diagrams, user stories)
+- Attended daily standups and integrated into the team
+
+Coming from school projects, I quickly learned that **real-world business analysis is significantly more complex than textbook examples**. Defining actors, stakeholders, and customer journeys for an actual client was eye-opening.
+
+### Weeks 3-6: Core Development
+
+From week 3 onwards, I was deep in development:
+
+**✅ Hello World Module** - Got my first Odoo module running  
+**✅ CRUD Operations** - Create, read, update, delete for manuals and collections  
+**✅ Archive & Delete Features** - Proper data lifecycle management  
+**✅ Collections System** - Group related manuals together  
+**✅ Instructions with Media** - Steps that support both images and videos
+
+One major challenge: **implementing steps/chunks was harder than expected**. The data structure needed to support ordering, media uploads, and dynamic editing—all while maintaining Odoo's conventions.
+
+### Weeks 7-9: Portal and UX
+
+This phase focused on the end-user experience:
+
+**✅ Responsive Web Portal** - Public-facing manual viewer  
+**✅ Built-in Video Trimmer** - Edit videos directly in the module  
+**✅ QR Code Generation** - Easy access to manuals via QR codes  
+**✅ Progress Tracking** - Visual progress bars for multi-step manuals  
+**✅ Mobile Optimization** - Fixed native video player issues on real devices
+
+The video editor was particularly tricky. I initially tried to save trimmed versions, but ended up building a custom web player that respects start/end timestamps without re-encoding videos.
+
+### Weeks 10-12: AI Integration
+
+This is where things got exciting:
+
+**✅ AI-Powered Translations** - Using AWS Bedrock (Claude) for batch translation  
+**✅ Terminology Consistency** - Custom terminology database for brand-specific terms  
+**✅ Text-to-Speech (TTS)** - Native Web Speech API for free tier  
+**✅ AWS Polly Integration** - Premium TTS with natural-sounding voices  
+**✅ ISO-639-1 Language Support** - Proper language code handling
+
+Initially, translations were slow. After discussions with Johan (senior dev), we optimized the approach:
+
+```python
+# Batch translations instead of one-by-one
+# Use terminology database for consistency
+# Cache translations to avoid redundant API calls
+```
+
+**Result:** Translation time dropped from ~30s to ~5s per manual.
+
+### Weeks 13-14: Polish and Integration
+
+Final stretch:
+
+**✅ Categories System** - Using Odoo's native tag system  
+**✅ Sales Module Integration** - Link manuals directly to products and sales orders  
+**✅ Arrow Key Navigation** - Better UX for step navigation  
+**✅ Localization (i18n)** - All UI strings properly translated  
+**✅ Client Demo** - Presented to Buro International (the actual client)  
+**✅ Final Presentation** - Showed the complete MVP
+
+The client meeting on **May 19th** was a highlight. Jeroen from Buro International provided valuable feedback that I immediately translated into new user stories and bug fixes.
+
+## What I Built
+
+The final MVP includes:
+
+### For Administrators (Backend)
+- **Manual Management** - Full CRUD with rich text editor
+- **Step Editor** - Add/reorder/delete steps with media
+- **Video Trimmer** - Built-in video editing
+- **Collections** - Organize manuals into groups
+- **Categories** - Tag system for filtering
+- **AI Translations** - One-click translation to 20+ languages
+- **TTS Generation** - Audio narration for accessibility
+- **Sales Integration** - Link manuals to products/orders
+- **QR Code Generation** - Print-friendly access codes
+
+### For End Users (Portal)
+- **Responsive Web Viewer** - Works on desktop and mobile
+- **Progress Tracking** - Visual progress through manuals
+- **Multilingual Support** - Switch languages on the fly
+- **Audio Playback** - Listen instead of reading
+- **Step Navigation** - Arrow keys, swipe gestures
+- **Mobile-Optimized** - Native video player support
+
+## Technical Stack
+
+```
+Backend:
+- Python 3.12.3
+- Odoo 19.0 Framework
+- Odoo ORM (models, views, security)
+- QWeb Templates
+
+Frontend:
+- OWL (Odoo Web Library) - ES6 Modules
+- JavaScript (no legacy odoo.define)
+- Custom Web Components
+
+AI & Cloud:
+- AWS Bedrock (Claude) - Translations
+- AWS Polly - Premium TTS
+- Web Speech API - Free TTS
+
+DevOps:
+- Odoo.sh - Hosting & deployment
+- Git + Feature branches
+- Conventional Commits
+- Code reviews via Pull Requests
+```
+
+## Technical Growth
+
+I arrived knowing some Python from school, but working with the Odoo framework was entirely new territory. Over these 14 weeks, I mastered:
+
+### 1. **Odoo Development**
+
+```python
+# Learned Odoo conventions
+class Manual(models.Model):
+    _name = 'manual.manual'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    
+    name = fields.Char(required=True, tracking=True)
+    steps = fields.One2many('manual.step', 'manual_id')
+    
+    @api.constrains('name')
+    def _check_name_length(self):
+        # Enforce constraints at DB level, not UI
+        if len(self.name) > 100:
+            raise ValidationError(_("Name too long"))
+```
+
+**Key learnings:**
+- Use Odoo's ORM instead of raw SQL
+- Enforce constraints at Python/DB level, not UI
+- Leverage `_inherit` for mixins (chatter, activities)
+- QWeb templates > string manipulation for HTML
+
+### 2. **OWL Components (Modern JS)**
+
+```javascript
+/** @odoo-module **/
+import { Component } from "@odoo/owl";
+
+export class StepEditor extends Component {
+    static template = "manual.StepEditor";
+    
+    // No more legacy odoo.define()!
+    // Pure ES6 modules
+}
+```
+
+One of my biggest technical lessons: **Stop writing custom JavaScript and look for native Odoo solutions first.** When I got stuck, my instinct was to code around problems—but Odoo's source code often had exactly what I needed.
+
+### 3. **AWS Integration**
+
+```python
+# AWS Bedrock for translations
+response = bedrock_client.converse(
+    modelId="us.anthropic.claude-sonnet-4-5",
+    messages=[{
+        "role": "user",
+        "content": f"Translate to {target_lang}: {text}"
+    }]
+)
+
+# AWS Polly for TTS
+audio_stream = polly_client.synthesize_speech(
+    Text=text,
+    OutputFormat='mp3',
+    VoiceId='Joanna',
+    Engine='neural'
+)
+```
+
+**Challenge:** Polly's voice mappings weren't always intuitive. Had to manually test and document which voices worked best for each language.
+
+### 4. **Professional Git Workflow**
+
+Before: "Just commit whatever"  
+After: Strict discipline
+
+```bash
+# Feature branch workflow
+git checkout -b feat/video-editor
+
+# Conventional commits
+git commit -m "feat: add video trimming capability"
+git commit -m "fix: resolve mobile video player issue"
+
+# Pull request for every feature
+# Code review from Johan before merge
+# Merge to staging → test → merge to main
+```
+
+**Workflow:**
+1. Create feature branch from `staging`
+2. Implement → commit → push
+3. Open PR for code review
+4. Address review comments
+5. Merge to `staging` → deploy to staging env
+6. Test on staging
+7. Merge `staging` → `main` for production
+
+### 5. **Agile in Practice**
+
+Worked with a Kanban board:
+
+```
+Backlog → Specifications → Development → UAT → Production
+```
+
+- **Daily standups** at 9:30 AM
+- **Weekly meetings** with Thomas (mentor) on Tuesdays
+- **Sprint planning** and **retrospectives**
+- **User story → ticket → PR → deploy** cycle
+
+## Challenges and Lessons
+
+### Challenge #1: Too Stubborn to Ask for Help
+
+**The problem:** I'd spend hours trying to solve problems independently when a quick question to a colleague could have saved time.
+
+**Example:** Spent 2 days debugging archive functionality before asking Johan—he pointed out a state management issue in 5 minutes.
+
+**Lesson learned:** Self-reliance is good, but know when to ask for help. Time is valuable.
+
+### Challenge #2: Reinventing the Wheel
+
+**The problem:** When stuck with Odoo, I'd fall back to writing custom JavaScript.
+
+**Example:** Built a custom dropdown before discovering Odoo already had `fields.Selection` with better UX.
+
+**Lesson learned:** Read the framework's source code first. Don't assume you need to build everything from scratch.
+
+### Challenge #3: Stand-up Anxiety
+
+**The problem:** Working solo on a project made daily stand-ups feel repetitive.
+
+**Example:** "Still working on the video editor... day 3" felt inadequate compared to teammates juggling multiple tickets.
+
+**Lesson learned:** Progress isn't always linear. It's okay to spend multiple days on complex features. The team understands.
+
+### Challenge #4: Analysis Paralysis
+
+**The problem:** Real-world business analysis was way more complex than school projects.
+
+**Example:** Defining actors, stakeholders, and edge cases for an actual client took 2+ weeks vs. the 2 days we spent on school projects.
+
+**Lesson learned:** Good analysis upfront saves time later. The client meeting on May 19th validated this—we had already anticipated most of their feedback.
+
+## Client Interaction
+
+One of the highlights was **presenting to Buro International** (the actual client paying for this):
+
+**Meeting on May 19th:**
+- Showed live demo of the MVP
+- Gathered real-time feedback
+- Answered questions about features and limitations
+- Discussed future roadmap
+
+**Client feedback:**
+- ✅ Loved the QR code feature
+- ✅ Video trimmer was "exactly what we needed"
+- ✅ Translations were impressive
+- 🔄 Requested minor UX adjustments (navigation, icons)
+- 🔄 Asked for category filtering in portal
+
+I immediately translated their feedback into new user stories and bug tickets. **This is what real software development looks like**—not building in a vacuum, but iterating based on actual user needs.
+
+## The Team and Culture
+
+Despite working solo on my project, I never felt alone:
+
+**Daily Structure:**
+- **9:30 AM** - Team stand-up (entire Odoo team)
+- **Tuesdays** - 1-on-1 with Thomas (my mentor)
+- **Monthly** - Team meetings (project demos, retrospectives)
+
+**Team Culture:**
+- **Open office layout** - Help always nearby
+- **Friendly and welcoming** - Everyone willing to assist
+- **Transparent communication** - No question was "too basic"
+- **Q1 Team Building** - Fun event in week 3
+
+**Mentorship:**
+- Thomas (mentor) gave consistent feedback: "You're on schedule, good progress"
+- Johan (senior dev) did all my code reviews—learned tons from his comments
+- Jonas helped with initial setup and onboarding
+- Marie (HR) explained Endare's structure and processes
+
+The fact that it's a **small company** (not a corporate giant) made a huge difference. I could walk over to someone's desk and get help immediately.
+
+## What I Learned Beyond Code
+
+### 1. **Real Requirements Are Messy**
+
+School: "Here's a clear spec, implement it."  
+Reality: "We think we want X... maybe also Y? Let's see what the client says."
+
+**Learning:** Requirements evolve. Build flexibility into your architecture.
+
+### 2. **Every Company Has Its Own Process**
+
+Textbooks teach Scrum, but every company adapts it:
+- Some do 2-week sprints, Endoo does continuous flow
+- Some do estimation poker, Endoo uses T-shirt sizing
+- Some have dedicated QA, Endoo has peer reviews
+
+**Learning:** There's no "one true way" to do Agile. Adapt to your team.
+
+### 3. **Analysis Actually Matters**
+
+I used to think analysis was bureaucratic overhead. Wrong.
+
+The 2 weeks I spent on requirements analysis:
+- Gave me a complete mental model of the project
+- Helped me spot edge cases early
+- Made development faster (I knew what to build)
+- Prepared me for client questions
+
+**Learning:** Don't skip analysis. It's not wasted time.
+
+### 4. **Code Reviews Are a Gift**
+
+Johan's PR comments taught me:
+- Odoo-specific patterns I didn't know existed
+- Performance optimizations (e.g., batch operations)
+- Security considerations (e.g., access control lists)
+- Code readability (better variable names, clearer logic)
+
+**Learning:** Embrace code reviews. Every comment makes you better.
+
+### 5. **Deployment Isn't Scary**
+
+Before: "Production deployment? I'll let DevOps handle that."  
+After: Deployed to staging 30+ times, production 5+ times.
+
+```bash
+# Deploying to staging was just:
+./deploy_to_staging.sh
+
+# Odoo.sh handled the rest (SSH, module update, restart)
+```
+
+**Learning:** Modern tools make deployment straightforward. Don't fear production.
+
+## Performance & Results
+
+### Build Metrics
+
+**Initial Load:**
+- Backend response time: ~200ms
+- Portal page load: ~1.2s (including images)
+- Video playback start: ~500ms
+
+**Translation Performance:**
+- Before optimization: ~30s per manual
+- After optimization: ~5s per manual
+- TTS generation: ~3s per step (Polly)
+
+**Scaling:**
+- Tested with 100+ manuals
+- 500+ steps across all manuals
+- 50+ videos (various sizes)
+- No performance degradation
+
+### User Feedback (from client demo)
+
+**Buro International:**
+- "This is exactly what we needed to replace Manual.to"
+- "The QR code feature will save us so much time"
+- "Video trimmer is way better than uploading pre-edited files"
+
+**Thomas (mentor):**
+- "You're on schedule and delivering quality work"
+- "Good progression, focus on end-user UX"
+- "The AI translation feature is impressive"
+
+## Reflections: What Would I Do Differently?
+
+### 1. **Ask for Help Sooner**
+
+I wasted time being stubborn. Next time, I'll set a rule: "If stuck for 30 minutes, ask someone."
+
+### 2. **Write Better Commit Messages Earlier**
+
+My early commits were vague:
+```
+"fix bug"
+"update code"
+"changes"
+```
+
+Later commits were much better:
+```
+"feat: add video trimming with start/end timestamps"
+"fix: resolve mobile video player native controls issue"
+"refactor: optimize translation batch processing"
+```
+
+**Learning:** Good commit messages are documentation. Do it from day one.
+
+### 3. **Test on Real Devices Earlier**
+
+I spent weeks testing in browser DevTools (F12), then discovered mobile browsers behave differently:
+- Native video players on iOS/Android
+- Touch gestures vs. mouse clicks
+- Performance on lower-end devices
+
+**Learning:** Test on actual devices early and often.
+
+### 4. **Document Edge Cases as I Go**
+
+I discovered dozens of edge cases during development:
+- What happens if a user uploads a 2GB video?
+- Can collections be nested? (No)
+- Can you delete a collection with manuals? (No)
+- What if translation fails mid-batch?
+
+I only documented these at the end. Should have done it continuously.
+
+### 5. **Celebrate Small Wins**
+
+Solo projects can feel isolating. I wish I'd celebrated more:
+- ✅ First successful video upload
+- ✅ First working translation
+- ✅ First QR code scan
+- ✅ First client demo
+
+**Learning:** Acknowledge progress, even if nobody else sees it yet.
+
+## What's Next?
+
+As I close this chapter, I'm considering:
+
+**Short term:**
+- Finish my Bachelor's degree at HOGENT
+- Apply learnings to my final Bachelor's project
+- Keep in touch with the Endoo team
+
+**Long term:**
+- Continue building with Python and Odoo
+- Explore more AI integrations (LLMs, embeddings, RAG)
+- Contribute to open-source projects
+
+## Key Takeaways
+
+If you're starting an internship, here's my advice:
+
+### 1. **Do the Analysis**
+Don't rush into coding. Understand the problem first.
+
+### 2. **Ask Questions Early**
+Nobody expects you to know everything. Ask, learn, repeat.
+
+### 3. **Read the Framework Docs**
+Before building something custom, check if it already exists.
+
+### 4. **Write Clean Commits**
+Future you (and your reviewers) will thank you.
+
+### 5. **Test on Real Devices**
+Browser DevTools ≠ actual mobile experience.
+
+### 6. **Embrace Code Reviews**
+They're not criticism, they're education.
+
+### 7. **Document Edge Cases**
+When you discover a gotcha, write it down immediately.
+
+### 8. **Celebrate Progress**
+Solo work can feel thankless. Acknowledge your wins.
+
+## Final Thoughts
+
+As I walked out of the office after today's final presentation, I felt a mix of accomplishment and gratitude.
+
+**I built something real**—a working product that will replace an expensive external platform.
+
+**I learned an entire technology stack from scratch**—Python, Odoo, OWL, AWS, AI integrations.
+
+**I experienced professional development**—Agile workflows, code reviews, client interactions, deployments.
+
+**Most importantly, I learned about myself**—both my strengths (creativity, self-motivation, technical adaptability) and my areas for growth (asking for help, leveraging existing solutions).
+
+Thank you to everyone at **Endoo by Endare** for these 14 weeks:
+- **Thomas** for mentorship and weekly check-ins
+- **Johan** for thorough code reviews and technical guidance
+- **Jonas** for setup help and onboarding
+- **Marie** for HR support and company context
+- **The entire Odoo team** for daily stand-ups and camaraderie
+
+I arrived as a student; I leave as a developer.
+
+---
+
+**Internship Period:** February 16 - May 21, 2026  
+**Company:** Endoo by Endare  
+**Project:** Manual.to for Odoo (MVP)  
+**Role:** Solo Developer & Analyst  
+
+**Tech Stack:** Python 3.12.3, Odoo 19.0, OWL, JavaScript, AWS Bedrock, AWS Polly, QWeb  
+**Methodology:** Agile/Kanban, Git Feature Branches, Pull Requests, Code Reviews
+
+*Want to connect? Find me on [LinkedIn](https://linkedin.com/in/brentvervaet) or [GitHub](https://github.com/brentvervaet)!*
