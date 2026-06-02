@@ -12,11 +12,11 @@ export interface Project {
 }
 
 export const defaultProjects: Project[] = [
-  // Manual.to for Odoo
+  // Endoo Internship Project
   {
-    title: 'Manual.to for Odoo',
+    title: 'Endoo Internship Project',
     longDescription:
-      'A native Odoo 19 module developed during my 14-week internship at Endoo by Endare to replace the external SaaS platform Manual.to. This enterprise solution enables companies to create step-by-step visual manuals with text, images, and video directly within their Odoo environment, eliminating the need for costly third-party subscriptions while providing seamless workflow integration with existing Odoo modules like Sales and Products.',
+      'A native Odoo 19 module developed during my 14-week internship at Endoo by Endare to replace an external SaaS platform. This enterprise solution enables companies to create step-by-step visual manuals with text, images, and video directly within their Odoo environment, eliminating the need for costly third-party subscriptions while providing seamless workflow integration with existing Odoo modules like Sales and Products.',
     description:
       'Enterprise Odoo module for creating interactive visual manuals with multimedia content, replacing third-party SaaS platforms.',
     features: [
