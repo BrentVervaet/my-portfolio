@@ -91,7 +91,12 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${roboto.variable} ${firaCode.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`scroll-smooth ${roboto.variable} ${firaCode.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <head>
         {/* Preconnect to external domains for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
