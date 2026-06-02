@@ -14,14 +14,37 @@ export interface Project {
 export const defaultProjects: Project[] = [
   // Manual.to for Odoo
   {
-    title: 'Endoo Internship Project',
-    longDescription: 'Coming soon',
-    description: 'Manual.to for Odoo',
-    features: ['Coming soon'],
-    challenges: ['Coming soon'],
-    technologies: ['Odoo', 'Python'],
+    title: 'Manual.to for Odoo',
+    longDescription:
+      'A native Odoo 19 module developed during my 14-week internship at Endoo by Endare to replace the external SaaS platform Manual.to. This enterprise solution enables companies to create step-by-step visual manuals with text, images, and video directly within their Odoo environment, eliminating the need for costly third-party subscriptions while providing seamless workflow integration with existing Odoo modules like Sales and Products.',
+    description:
+      'Enterprise Odoo module for creating interactive visual manuals with multimedia content, replacing third-party SaaS platforms.',
+    features: [
+      'Complete CRUD operations for manuals and collections with archive/restore functionality',
+      'Multi-step manual creation with rich media support (images and video)',
+      'Integrated video trimmer for precise content editing',
+      'QR code generation for easy manual sharing and mobile access',
+      'Responsive web portal for end-users with custom video player',
+      'AI-powered translation system using AWS Bedrock (Claude) with terminology database for consistency',
+      'Text-to-Speech integration with native Web Speech API and AWS Polly for premium users',
+      'Category/tag system for manual organization',
+      'Direct integration with Odoo Sales and Products modules',
+      'Multi-language support with ISO-639-1 language codes',
+      'Chatter integration for collaboration',
+    ],
+    challenges: [
+      'Learning the Odoo framework and Python ecosystem from scratch while maintaining aggressive sprint timelines',
+      'Implementing a custom video trimmer that works seamlessly in both the admin interface and public web portal',
+      'Designing an efficient AI translation workflow with AWS Bedrock that maintains terminology consistency across large manual databases',
+      'Integrating AWS Polly for premium Text-to-Speech while providing a fallback to native Web Speech API for free users',
+      'Building a responsive web portal with custom video player that respects video trim points without re-encoding',
+      'Overcoming the tendency to build custom JavaScript solutions instead of leveraging native Odoo OWL components',
+      'Conducting requirements analysis, creating BPMN diagrams, and managing user stories independently',
+      'Balancing client feedback iterations with maintaining code quality through PR reviews',
+    ],
+    technologies: ['Odoo 19', 'Python', 'JavaScript', 'PostgreSQL', 'AWS', 'Git'],
     images: ['/images/Projects/Endoo/endoo.webp'],
-    date: new Date('2026-02-22'),
+    date: new Date('2026-02-16'),
   },
 
   // Fashion Portfolio: Annelies Annys
