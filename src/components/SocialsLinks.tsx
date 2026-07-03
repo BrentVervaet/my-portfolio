@@ -87,7 +87,7 @@ const SocialLinks = memo(function SocialLinks({
             whileTap={{ rotate: -2, scale: 0.95 }}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
-            href="/CV_Brent_Vervaet.pdf"
+            href="/CV_Brent_Vervaet.zip"
             download
           >
             <Download className="mr-2 h-3 w-3" />
