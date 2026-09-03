@@ -33,14 +33,14 @@ const HeroSection = () => {
           </p>
           <div className="mb-6 flex items-center gap-2 text-zinc-600 sm:mb-7 md:mb-8 dark:text-zinc-400">
             <Link
-              href="https://www.google.com/maps/place/Gent"
+              href="https://www.google.com/maps/place/Bruges"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Open Ghent location in Google Maps"
+              aria-label="Open Bruges location in Google Maps"
               className="flex items-center gap-1.5 text-zinc-600 transition-colors hover:text-zinc-900 sm:gap-2 dark:text-zinc-400 dark:hover:text-zinc-100"
             >
               <Globe className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
-              <span className="text-sm font-medium sm:text-base">Ghent, Belgium</span>
+              <span className="text-sm font-medium sm:text-base">Bruges, Belgium</span>
             </Link>
           </div>
           <SocialLinks className="mt-2 sm:mt-3 md:mt-4" showResumeButton={true} />
