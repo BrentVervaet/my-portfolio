@@ -71,7 +71,6 @@ export const defaultProjects: Project[] = [
       '/images/Projects/AnneliesPortfolio/portfolio02.webp',
     ],
     link: 'https://anneliesannys.com',
-    sourceCodeLink: 'https://github.com/brentvervaet/anneliesannys-portfolio',
     date: new Date('2025-11-01'),
   },
 
